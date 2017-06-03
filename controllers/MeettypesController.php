@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * MeetTypesController implements the CRUD actions for MeetTypes model.
  */
-class MeetTypesController extends Controller
+class MeettypesController extends Controller
 {
     /**
      * @inheritdoc

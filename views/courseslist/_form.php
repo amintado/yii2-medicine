@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="courses-list-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(Yii::$app->controller->module->formsConfig); ?>
 
     <?= $form->field($model, 'course_id')->textInput() ?>
 

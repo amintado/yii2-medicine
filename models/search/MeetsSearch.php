@@ -1,14 +1,14 @@
 <?php
 
-namespace app\models\search;
+namespace ut8ia\medicine\models\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Meets;
+use ut8ia\medicine\models\Meets;
 
 /**
- * MeetsSearch represents the model behind the search form of `app\models\Meets`.
+ * MeetsSearch represents the model behind the search form of `ut8ia\medicine\models\Meets`.
  */
 class MeetsSearch extends Meets
 {
@@ -18,7 +18,7 @@ class MeetsSearch extends Meets
     public function rules()
     {
         return [
-            [['id', 'expert_id', 'expert_group_id', 'patient_id', 'place_id', 'course_id', 'for excerpt'], 'integer'],
+            [['id', 'expert_id', 'expert_group_id', 'patient_id', 'place_id', 'course_id', 'for_excerpt'], 'integer'],
             [['status', 'text', 'comment', 'time_from', 'time_to'], 'safe'],
         ];
     }

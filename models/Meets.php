@@ -15,7 +15,7 @@ use Yii;
  * @property int $course_id
  * @property string $status
  * @property int $meet_type_id
- * @property int $for excerpt
+ * @property int $for_excerpt
  * @property string $text
  * @property string $comment
  * @property string $time_from
@@ -37,8 +37,8 @@ class Meets extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['expert_id', 'expert_group_id', 'patient_id', 'status', 'meet_type_id', 'for excerpt', 'time_from', 'time_to'], 'required'],
-            [['expert_id', 'expert_group_id', 'patient_id', 'place_id', 'course_id', 'meet_type_id', 'for excerpt'], 'integer'],
+            [['expert_id', 'expert_group_id', 'patient_id', 'status', 'meet_type_id', 'for_excerpt', 'time_from', 'time_to'], 'required'],
+            [['expert_id', 'expert_group_id', 'patient_id', 'place_id', 'course_id', 'meet_type_id', 'for_excerpt'], 'integer'],
             [['status'], 'string'],
             [['time_from', 'time_to'], 'safe'],
             [['text'], 'string', 'max' => 1024],
@@ -60,7 +60,7 @@ class Meets extends \yii\db\ActiveRecord
             'course_id' => Yii::t('app', 'Course ID'),
             'status' => Yii::t('app', 'Status'),
             'meet_type_id' => Yii::t('app', 'Meet Type ID'),
-            'for excerpt' => Yii::t('app', 'For Excerpt'),
+            'for_excerpt' => Yii::t('app', 'For Excerpt'),
             'text' => Yii::t('app', 'Text'),
             'comment' => Yii::t('app', 'Comment'),
             'time_from' => Yii::t('app', 'Time From'),

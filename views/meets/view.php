@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'course_id',
             'status',
             'meet_type_id',
-            'for excerpt',
+            'for_excerpt',
             'text',
             'comment',
             'time_from',

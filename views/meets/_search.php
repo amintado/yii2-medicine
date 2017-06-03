@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'meet_type_id') ?>
 
-    <?php // echo $form->field($model, 'for excerpt') ?>
+    <?php // echo $form->field($model, 'for_excerpt') ?>
 
     <?php // echo $form->field($model, 'text') ?>
 

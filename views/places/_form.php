@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="places-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(Yii::$app->controller->module->formsConfig); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

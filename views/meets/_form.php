@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="meets-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(Yii::$app->controller->module->formsConfig); ?>
 
     <?= $form->field($model, 'expert_id')->textInput() ?>
 
@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'meet_type_id')->textInput() ?>
 
-    <?= $form->field($model, 'for excerpt')->textInput() ?>
+    <?= $form->field($model, 'for_excerpt')->textInput() ?>
 
     <?= $form->field($model, 'text')->textInput(['maxlength' => true]) ?>
 
