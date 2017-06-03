@@ -1,0 +1,48 @@
+<?php
+
+namespace ut8ia\medicine\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "med_expert_patients_link".
+ *
+ * @property int $id
+ * @property int $expert_id
+ * @property int $expert_group_id
+ * @property int $patient_id
+ */
+class ExpertPatientsLink extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'med_expert_patients_link';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['expert_id', 'expert_group_id', 'patient_id'], 'required'],
+            [['expert_id', 'expert_group_id', 'patient_id'], 'integer'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'expert_id' => Yii::t('app', 'Expert ID'),
+            'expert_group_id' => Yii::t('app', 'Expert Group ID'),
+            'patient_id' => Yii::t('app', 'Patient ID'),
+        ];
+    }
+}
