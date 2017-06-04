@@ -48,4 +48,20 @@ class Excerpts extends \yii\db\ActiveRecord
             'date' => Yii::t('app', 'Date'),
         ];
     }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getCourses()
+    {
+        return $this->hasOne(Courses::class, ['id' => 'course_id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPatients()
+    {
+        return $this->hasOne(Patients::class, ['id' => 'patient_id']);
+    }
+
+
+
+
 }

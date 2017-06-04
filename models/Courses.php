@@ -50,4 +50,24 @@ class Courses extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'Status'),
         ];
     }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getMeets()
+    {
+        return $this->hasMany(Meets::class, ['course_id' => 'id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getCoursesList()
+    {
+        return $this->hasMany(CoursesList::class, ['course_id' => 'id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExcerpts()
+    {
+        return $this->hasMany(Exceprts::class, ['course_id' => 'id']);
+    }
+
+
 }

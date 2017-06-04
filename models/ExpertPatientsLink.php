@@ -45,4 +45,24 @@ class ExpertPatientsLink extends \yii\db\ActiveRecord
             'patient_id' => Yii::t('app', 'Patient ID'),
         ];
     }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExperts()
+    {
+        return $this->hasOne(Experts::class, ['id' => 'expert_id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExpertGroups()
+    {
+        return $this->hasOne(ExpertGroups::class, ['id' => 'expert_group_id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPatients()
+    {
+        return $this->hasOne(Patients::class, ['id' => 'patient_id']);
+    }
+
+
 }

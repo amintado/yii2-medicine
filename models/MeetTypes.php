@@ -41,4 +41,21 @@ class MeetTypes extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
         ];
     }
+
+
+
+    /** @return \yii\db\ActiveQuery */
+    public function getMeets()
+    {
+        return $this->hasMany(Meets::class, ['meet_type_id'=>'id']);
+    }
+
+
+    /** @return \yii\db\ActiveQuery */
+    public function getSchedule()
+    {
+        return $this->hasMany(Schedule::class, ['meet_type_id'=>'id']);
+    }
+
+
 }

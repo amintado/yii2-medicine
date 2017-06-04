@@ -54,4 +54,24 @@ class CoursesList extends \yii\db\ActiveRecord
             'comment' => Yii::t('app', 'Comment'),
         ];
     }
+
+
+    /** @return \yii\db\ActiveQuery */
+    public function getCourses()
+    {
+        return $this->hasOne(Courses::class, ['id' => 'course_id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPatients()
+    {
+        return $this->hasOne(Patients::class, ['id' => 'patient_id']);
+    }
+
+
+
+
+
+
+
 }

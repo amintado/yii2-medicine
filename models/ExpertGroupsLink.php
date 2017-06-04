@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "med_expert_groups_link".
  *
  * @property int $id
- * @property int $group_id
+ * @property int $expert_group_id
  * @property int $expert_id
  */
 class ExpertGroupsLink extends \yii\db\ActiveRecord
@@ -27,8 +27,8 @@ class ExpertGroupsLink extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['group_id', 'expert_id'], 'required'],
-            [['group_id', 'expert_id'], 'integer'],
+            [['expert_group_id', 'expert_id'], 'required'],
+            [['expert_group_id', 'expert_id'], 'integer'],
         ];
     }
 
@@ -39,8 +39,24 @@ class ExpertGroupsLink extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'group_id' => Yii::t('app', 'Group ID'),
+            'expert_group_id' => Yii::t('app', 'Expert group ID'),
             'expert_id' => Yii::t('app', 'Expert ID'),
         ];
     }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExpertGroup()
+    {
+        return $this->hasOne(ExpertGroups::class, ['id' => 'expert_group_id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExperts()
+    {
+        return $this->hasOne(Experts::class, ['id' => 'expert_id']);
+    }
+
+
+
+
 }

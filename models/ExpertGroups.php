@@ -50,4 +50,44 @@ class ExpertGroups extends \yii\db\ActiveRecord
             'excerpt_order' => Yii::t('app', 'Excerpt Order'),
         ];
     }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getMeets()
+    {
+        return $this->hasMany(Meets::class, ['expert_group_id'=>'id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExpertPatientsLink()
+    {
+        return $this->hasMany(ExpertPatientsLink::class, ['expert_group_id'=>'id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getSchedule()
+    {
+        return $this->hasMany(Schedule::class, ['expert_group_id'=>'id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getScheduleTemplates()
+    {
+        return $this->hasMany(ScheduleTemplates::class, ['expert_group_id'=>'id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPlacesExpertGroupsLink()
+    {
+        return $this->hasMany(PlacesExpertGroupsLink::class, ['expert_group_id'=>'id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExpertGroupsLink()
+    {
+        return $this->hasMany(ExpertGroupsLink::class, ['expert_group_id'=>'id']);
+    }
+
+
+
+
 }

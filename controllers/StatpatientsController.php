@@ -6,7 +6,7 @@ use Yii;
 use yii\web\Controller;
 
 
-class StatexpertsController extends Controller
+class StatpatientsController extends Controller
 {
 
     public function actionIndex()

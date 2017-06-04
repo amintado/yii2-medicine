@@ -55,4 +55,26 @@ class ScheduleTemplates extends \yii\db\ActiveRecord
             'comment' => Yii::t('app', 'Comment'),
         ];
     }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPlaces()
+    {
+        return $this->hasOne(Places::class, ['id' => 'place_id']);
+    }
+
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExpertGroups()
+    {
+        return $this->hasOne(ExpertGroups::class, ['id' => 'expert_group_id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExperts()
+    {
+        return $this->hasOne(Experts::class, ['id' => 'expert_id']);
+    }
+
+
+
 }

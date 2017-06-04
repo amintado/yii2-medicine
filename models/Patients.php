@@ -70,4 +70,33 @@ class Patients extends \yii\db\ActiveRecord
             'user_id' => Yii::t('app', 'User ID'),
         ];
     }
+
+
+    /** @return \yii\db\ActiveQuery */
+    public function getCoursesList()
+    {
+        return $this->hasMany(CoursesList::class, ['patient_id' => 'id']);
+    }
+
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExcerpts()
+    {
+        return $this->hasMany(Excerpts::class, ['patient_id' => 'id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExpertPatientsLink()
+    {
+        return $this->hasMany(ExpertPatientsLink::class, ['patient_id' => 'id']);
+    }
+
+
+    /** @return \yii\db\ActiveQuery */
+    public function getMeets()
+    {
+        return $this->hasMany(Meets::class, ['patient_id' => 'id']);
+    }
+
+
 }

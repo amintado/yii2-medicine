@@ -67,4 +67,41 @@ class Meets extends \yii\db\ActiveRecord
             'time_to' => Yii::t('app', 'Time To'),
         ];
     }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getCourses()
+    {
+        return $this->hasOne(Courses::class, ['id' => 'course_id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPatients()
+    {
+        return $this->hasOne(Patients::class, ['id' => 'patient_id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPlaces()
+    {
+        return $this->hasOne(Places::class, ['id' => 'place_id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExperts()
+    {
+        return $this->hasOne(Experts::class, ['id' => 'expert_id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExpertGroups()
+    {
+        return $this->hasOne(ExpertsGroups::class, ['id' => 'expert_group_id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getMeetTypes()
+    {
+        return $this->hasOne(MeetTypes::class, ['id' => 'meet_type_id']);
+    }
+
 }

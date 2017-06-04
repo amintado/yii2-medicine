@@ -44,4 +44,37 @@ class Places extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
         ];
     }
+
+
+    /** @return \yii\db\ActiveQuery */
+    public function getMeets()
+    {
+        return $this->hasMany(Meets::class, ['place_id' => 'id']);
+    }
+
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExpertPlacesLink()
+    {
+        return $this->hasMany(ExpertPlacesLink::class, ['place_id' => 'id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPlacesExpertGroups()
+    {
+        return $this->hasMany(PlacesExpertGroupsLink::class, ['place_id' => 'id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getScheduleTemplates()
+    {
+        return $this->hasMany(ScheduleTemplates::class, ['place_id' => 'id']);
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getSchedule()
+    {
+        return $this->hasMany(Schedule::class, ['place_id' => 'id']);
+    }
+
 }
