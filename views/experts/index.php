@@ -22,15 +22,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update}<br>{delete}<br>{view}',
+                'contentOptions' => [
+                    'class' => 'small text-right',
+                    'nowrap' => 'nowrap'
+                ],
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-12 text-left'],
+                'attribute' => 'Name',
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->fullName();
+                },
+            ],
+//            'id',
+//            'username',
+//            'auth_key',
+//            'password_hash',
+//            'password_reset_token',
             // 'email:email',
             // 'status',
             // 'created_at',
@@ -43,8 +56,6 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'images',
             // 'specialization',
             // 'slug',
-
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

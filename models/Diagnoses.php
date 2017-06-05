@@ -54,5 +54,28 @@ class Diagnoses extends \yii\db\ActiveRecord
         return $this->hasMany(DiagnosesAppointments::class, ['diagnoses_id' => 'id']);
     }
 
+    /** linked relations */
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPatients()
+    {
+        return $this->hasMany(Patients::class, ['id' => 'patient_id'])
+            ->via('diagnosesAppointments');
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExperts()
+    {
+        return $this->hasMany(Experts::class, ['id' => 'expert_id'])
+            ->via('diagnosesAppointments');
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExpertGroups()
+    {
+        return $this->hasMany(ExpertGroups::class, ['id' => 'expert_group_id'])
+            ->via('diagnosesAppointments');
+    }
+
 
 }

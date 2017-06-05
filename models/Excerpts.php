@@ -61,7 +61,27 @@ class Excerpts extends \yii\db\ActiveRecord
         return $this->hasOne(Patients::class, ['id' => 'patient_id']);
     }
 
+    /** @return \yii\db\ActiveQuery */
+    public function getMeets()
+    {
+        return $this->hasMany(Meets::class, ['course_id' => 'course_id']);
+    }
 
+    /** linked relations */
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExperts()
+    {
+        return $this->hasMany(Experts::class, ['id' => 'expert_id'])
+            ->via('meets');
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExpertGroups()
+    {
+        return $this->hasMany(ExpertGroups::class, ['id' => 'expert_group_id'])
+            ->via('meets');
+    }
 
 
 }

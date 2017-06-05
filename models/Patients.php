@@ -104,6 +104,35 @@ class Patients extends \yii\db\ActiveRecord
         return $this->hasMany(DiagnosesAppointments::class, ['patient_id' => 'id']);
     }
 
+    /** linked relations */
+
+    /** @return \yii\db\ActiveQuery */
+    public function getCourses()
+    {
+        return $this->hasMany(Experts::class, ['id' => 'course_id'])
+            ->via('coursesList');
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPlaces()
+    {
+        return $this->hasMany(Places::class, ['id' => 'place_id'])
+            ->via('meets');
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExpertGroups()
+    {
+        return $this->hasMany(ExpertGroups::class, ['id' => 'expert_group_id'])
+            ->via('meets');
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExperts()
+    {
+        return $this->hasMany(Experts::class, ['id' => 'experts_id'])
+            ->via('meets');
+    }
 
 
 }

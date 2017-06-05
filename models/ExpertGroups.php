@@ -54,43 +54,52 @@ class ExpertGroups extends \yii\db\ActiveRecord
     /** @return \yii\db\ActiveQuery */
     public function getMeets()
     {
-        return $this->hasMany(Meets::class, ['expert_group_id'=>'id']);
+        return $this->hasMany(Meets::class, ['expert_group_id' => 'id']);
     }
 
     /** @return \yii\db\ActiveQuery */
     public function getExpertPatientsLink()
     {
-        return $this->hasMany(ExpertPatientsLink::class, ['expert_group_id'=>'id']);
+        return $this->hasMany(ExpertPatientsLink::class, ['expert_group_id' => 'id']);
     }
 
     /** @return \yii\db\ActiveQuery */
     public function getSchedule()
     {
-        return $this->hasMany(Schedule::class, ['expert_group_id'=>'id']);
+        return $this->hasMany(Schedule::class, ['expert_group_id' => 'id']);
     }
 
     /** @return \yii\db\ActiveQuery */
     public function getScheduleTemplates()
     {
-        return $this->hasMany(ScheduleTemplates::class, ['expert_group_id'=>'id']);
+        return $this->hasMany(ScheduleTemplates::class, ['expert_group_id' => 'id']);
     }
 
     /** @return \yii\db\ActiveQuery */
     public function getPlacesExpertGroupsLink()
     {
-        return $this->hasMany(PlacesExpertGroupsLink::class, ['expert_group_id'=>'id']);
+        return $this->hasMany(PlacesExpertGroupsLink::class, ['expert_group_id' => 'id']);
     }
 
     /** @return \yii\db\ActiveQuery */
     public function getExpertGroupsLink()
     {
-        return $this->hasMany(ExpertGroupsLink::class, ['expert_group_id'=>'id']);
+        return $this->hasMany(ExpertGroupsLink::class, ['expert_group_id' => 'id']);
     }
 
     /** @return \yii\db\ActiveQuery */
     public function getDiagnosesAppointments()
     {
-        return $this->hasMany(DiagnosesAppointments::class, ['expert_group_id'=>'id']);
+        return $this->hasMany(DiagnosesAppointments::class, ['expert_group_id' => 'id']);
+    }
+
+    /** linked relations */
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPlaces()
+    {
+        return $this->hasMany(Places::class, ['id' => 'place_id'])
+            ->via('placesExpertGroupsLink');
     }
 
 

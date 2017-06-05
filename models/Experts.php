@@ -106,7 +106,6 @@ class Experts extends ActiveRecord
         return $this->hasMany(Schedule::class, ['expert_id' => 'id']);
     }
 
-
     /** @return \yii\db\ActiveQuery */
     public function getExpertPatientsLink()
     {
@@ -117,6 +116,47 @@ class Experts extends ActiveRecord
     public function getDiagnosesAppointments()
     {
         return $this->hasMany(DiagnosesAppointments::class, ['expert_id' => 'id']);
+    }
+
+    /** linked relations */
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPlaces()
+    {
+        return $this->hasMany(Places::class, ['id' => 'place_id'])
+            ->via('expertPlacesLink');
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExpertGroups()
+    {
+        return $this->hasMany(ExpertGroups::class, ['id' => 'expert_group_id'])
+            ->via('expertGroupsLink');
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPatients()
+    {
+        return $this->hasMany(Patients::class, ['id' => 'patient_id'])
+            ->via('expertPatientsLink');
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function shortName()
+    {
+        return ucfirst($this->name) . " " . ucfirst($this->surname);
+    }
+
+    /**
+     * @return string
+     */
+    public function fullName()
+    {
+        return ucfirst($this->surname) . " " . ucfirst($this->name) . " " . ucfirst($this->patronymic);
     }
 
 

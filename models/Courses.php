@@ -69,5 +69,14 @@ class Courses extends \yii\db\ActiveRecord
         return $this->hasMany(Exceprts::class, ['course_id' => 'id']);
     }
 
+    /** linked relations */
+
+    /** @return \yii\db\ActiveQuery */
+    public function getPatients()
+    {
+        return $this->hasMany(Patients::class, ['id' => 'patient_id'])
+            ->via('coursesList');
+    }
+
 
 }

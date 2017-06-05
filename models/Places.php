@@ -27,7 +27,7 @@ class Places extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description'], 'required'],
+            [['name'], 'required'],
             [['name'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 512],
         ];
@@ -60,7 +60,7 @@ class Places extends \yii\db\ActiveRecord
     }
 
     /** @return \yii\db\ActiveQuery */
-    public function getPlacesExpertGroups()
+    public function getPlacesExpertGroupsLink()
     {
         return $this->hasMany(PlacesExpertGroupsLink::class, ['place_id' => 'id']);
     }
@@ -76,5 +76,21 @@ class Places extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Schedule::class, ['place_id' => 'id']);
     }
+
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExperts()
+    {
+        return $this->hasMany(Experts::class, ['id' => 'expert_id'])
+            ->via('expertPlacesLink');
+    }
+
+    /** @return \yii\db\ActiveQuery */
+    public function getExpertsGroups()
+    {
+        return $this->hasMany(ExpertsGroups::class, ['id' => 'expert_group_id'])
+            ->via('placesExpertGroupsLink');
+    }
+
 
 }

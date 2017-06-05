@@ -104,4 +104,10 @@ class Meets extends \yii\db\ActiveRecord
         return $this->hasOne(MeetTypes::class, ['id' => 'meet_type_id']);
     }
 
+    /** @return \yii\db\ActiveQuery */
+    public function getExcerpts()
+    {
+        return $this->hasOne(Excerpts::class, ['course_id' => 'course_id']);
+    }
+
 }
