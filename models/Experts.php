@@ -79,43 +79,45 @@ class Experts extends ActiveRecord
     /** @return \yii\db\ActiveQuery */
     public function getMeets()
     {
-        return $this->hasMany(ExpertGroupsLink::class, ['expert_id'=>'id']);
+        return $this->hasMany(ExpertGroupsLink::class, ['expert_id' => 'id']);
     }
 
     /** @return \yii\db\ActiveQuery */
     public function getExpertGroupsLink()
     {
-        return $this->hasMany(ExpertGroupsLink::class, ['expert_id'=>'id']);
+        return $this->hasMany(ExpertGroupsLink::class, ['expert_id' => 'id']);
     }
 
     /** @return \yii\db\ActiveQuery */
     public function getExpertPlacesLink()
     {
-        return $this->hasMany(ExpertPlacesLink::class, ['expert_id'=>'id']);
+        return $this->hasMany(ExpertPlacesLink::class, ['expert_id' => 'id']);
     }
 
     /** @return \yii\db\ActiveQuery */
     public function getScheduleTemplates()
     {
-        return $this->hasMany(ScheduleTemplates::class, ['expert_id'=>'id']);
+        return $this->hasMany(ScheduleTemplates::class, ['expert_id' => 'id']);
     }
 
     /** @return \yii\db\ActiveQuery */
     public function getSchedule()
     {
-        return $this->hasMany(Schedule::class, ['expert_id'=>'id']);
+        return $this->hasMany(Schedule::class, ['expert_id' => 'id']);
     }
 
 
     /** @return \yii\db\ActiveQuery */
     public function getExpertPatientsLink()
     {
-        return $this->hasMany(ExpertPatientsLink::class, ['expert_id'=>'id']);
+        return $this->hasMany(ExpertPatientsLink::class, ['expert_id' => 'id']);
     }
 
-
-
-
+    /** @return \yii\db\ActiveQuery */
+    public function getDiagnosesAppointments()
+    {
+        return $this->hasMany(DiagnosesAppointments::class, ['expert_id' => 'id']);
+    }
 
 
 }

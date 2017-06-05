@@ -87,7 +87,11 @@ class ExpertGroups extends \yii\db\ActiveRecord
         return $this->hasMany(ExpertGroupsLink::class, ['expert_group_id'=>'id']);
     }
 
-
+    /** @return \yii\db\ActiveQuery */
+    public function getDiagnosesAppointments()
+    {
+        return $this->hasMany(DiagnosesAppointments::class, ['expert_group_id'=>'id']);
+    }
 
 
 }

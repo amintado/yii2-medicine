@@ -98,5 +98,12 @@ class Patients extends \yii\db\ActiveRecord
         return $this->hasMany(Meets::class, ['patient_id' => 'id']);
     }
 
+    /** @return \yii\db\ActiveQuery */
+    public function getDiagnosesAppointments()
+    {
+        return $this->hasMany(DiagnosesAppointments::class, ['patient_id' => 'id']);
+    }
+
+
 
 }
