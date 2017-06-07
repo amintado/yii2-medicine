@@ -27,12 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn',
                 'template' => '{update}<br>{delete}<br>{view}',
                 'contentOptions' => [
-                    'class' => 'small text-right',
+//                    'class' => 'small text-right',
                     'nowrap' => 'nowrap'
                 ],
             ],
             [
-                'contentOptions' => ['class' => 'col-lg-12 text-left'],
+//                'contentOptions' => ['class' => 'col-lg-12 text-left'],
                 'attribute' => 'Name',
                 'format' => 'html',
                 'value' => function($model) {

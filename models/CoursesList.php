@@ -17,6 +17,27 @@ use Yii;
  */
 class CoursesList extends \yii\db\ActiveRecord
 {
+
+    const STATUS_IN_LIST = 'in_list';
+    const STATUS_RESERVE = 'reserve';
+    const STATUS_REJECTED = 'rejected';
+    const STATUS_PLANNED = 'planned';
+    const STATUS_REQUEST = 'request';
+
+    /**
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return [
+            self::STATUS_IN_LIST => Yii::t('app', 'in list'),
+            self::STATUS_RESERVE => Yii::t('app', 'reserved'),
+            self::STATUS_PLANNED => Yii::t('app', 'planned'),
+            self::STATUS_REQUEST => Yii::t('app', 'request'),
+            self::STATUS_REJECTED => Yii::t('app', 'rejected')
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -67,11 +88,6 @@ class CoursesList extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Patients::class, ['id' => 'patient_id']);
     }
-
-
-
-
-
 
 
 }

@@ -15,6 +15,21 @@ use Yii;
  */
 class Courses extends \yii\db\ActiveRecord
 {
+
+    const STATUS_OPEN = 'open';
+    const STATUS_CLOSED = 'closed';
+
+    /**
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return [
+            self::STATUS_OPEN => Yii::t('app', 'open'),
+            self::STATUS_CLOSED => Yii::t('app', 'closed')
+        ];
+    }
+
     /**
      * @inheritdoc
      */

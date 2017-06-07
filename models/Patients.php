@@ -23,6 +23,22 @@ use Yii;
  */
 class Patients extends \yii\db\ActiveRecord
 {
+
+    const SEX_FEMALE = 'female';
+    const SEX_MALE = 'male';
+
+    /**
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return [
+            self::SEX_FEMALE => Yii::t('app', 'female'),
+            self::SEX_MALE => Yii::t('app', 'male'),
+        ];
+    }
+
+
     /**
      * @inheritdoc
      */

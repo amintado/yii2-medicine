@@ -18,6 +18,23 @@ use Yii;
  */
 class DiagnosesAppointments extends \yii\db\ActiveRecord
 {
+
+    const TYPE_MAIN = 'main';
+    const TYPE_ADDITIONAL = 'additional';
+    const TYPE_SUPPOSED = 'supposed';
+
+    /**
+     * @return array
+     */
+    public static function getTypes()
+    {
+        return [
+            self::TYPE_MAIN => Yii::t('app', 'main'),
+            self::TYPE_ADDITIONAL => Yii::t('app', 'additional'),
+            self::TYPE_SUPPOSED => Yii::t('app', 'supposed')
+        ];
+    }
+
     /**
      * @inheritdoc
      */
