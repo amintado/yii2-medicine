@@ -18,11 +18,18 @@ use Yii;
  * @property int $for_excerpt
  * @property string $text
  * @property string $comment
+ * @property string $plan_from
+ * @property string $plan_to
  * @property string $time_from
  * @property string $time_to
  */
 class Meets extends \yii\db\ActiveRecord
 {
+
+    const STATUS_PLANNED = 'planned';
+    const STATUS_DONE = 'done';
+    const STATUS_REJECTED = 'rejected';
+
     /**
      * @inheritdoc
      */
@@ -37,10 +44,10 @@ class Meets extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['expert_id', 'expert_group_id', 'patient_id', 'status', 'meet_type_id', 'for_excerpt', 'time_from', 'time_to'], 'required'],
+            [['expert_id', 'expert_group_id', 'patient_id', 'status', 'meet_type_id', 'for_excerpt', 'plan_from', 'plan_to'], 'required'],
             [['expert_id', 'expert_group_id', 'patient_id', 'place_id', 'course_id', 'meet_type_id', 'for_excerpt'], 'integer'],
             [['status'], 'string'],
-            [['time_from', 'time_to'], 'safe'],
+            [['plan_from', 'plan_to','time_from', 'time_to'], 'safe'],
             [['text'], 'string', 'max' => 1024],
             [['comment'], 'string', 'max' => 512],
         ];
