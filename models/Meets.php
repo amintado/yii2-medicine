@@ -44,7 +44,7 @@ class Meets extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['expert_id', 'expert_group_id', 'patient_id', 'status', 'meet_type_id', 'for_excerpt', 'plan_from', 'plan_to'], 'required'],
+            [['expert_id', 'expert_group_id', 'patient_id', 'status', 'meet_type_id', 'for_excerpt'], 'required'],
             [['expert_id', 'expert_group_id', 'patient_id', 'place_id', 'course_id', 'meet_type_id', 'for_excerpt'], 'integer'],
             [['status'], 'string'],
             [['plan_from', 'plan_to','time_from', 'time_to'], 'safe'],

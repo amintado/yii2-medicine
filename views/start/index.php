@@ -3,8 +3,8 @@
 
 ?>
 <div class="jumbotron">
+    <h2><?= Yii::$app->time->date ?></h2>
     <button class="btn btn-warning" type="button">Пацієнтів <span class="badge"><?= $patientsCount ?></span></button>
-    <br><br>
     <button class="btn btn-primary" type="button">Хлопчиків <span class="badge"><?= $patientsMale ?></span></button>
     <button class="btn btn-danger" type="button">Дівчат <span class="badge"><?= $patientsFemale ?></span></button>
     <br><br>
@@ -15,10 +15,10 @@
     </button>
     <br>
     <hr>
-    <button class="btn btn-default" type="button">До мене на сьогодні <span class="badge"><?= $patientsMeets ?></span>
+    <button class="btn btn-default" type="button">До мене на сьогодні <span class="badge"><?= $myPatientsToday ?></span>
     </button>
 
-    <button class="btn btn-default" type="button">До мене на завтра <span class="badge"><?= $patientsMeets ?></span>
+    <button class="btn btn-default" type="button">До мене на завтра <span class="badge"><?= $myPatientsTomorrow ?></span>
     </button>
     <br>
     <br>

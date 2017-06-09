@@ -23,6 +23,19 @@ class StartController extends Controller
                 'patientsMeets' => count($dataSource->patientsMeets(Meets::STATUS_DONE)),
                 'patientsFinishedCourses' => count($dataSource->excerpts()),
                 'patientsPlannedMeets' => count($dataSource->patientsMeets(Meets::STATUS_PLANNED)),
+                'myPatientsToday' => count(Yii::$app->expert->findMeets([
+                    'and',
+                    ['=', 'status', Meets::STATUS_PLANNED],
+                    ['>=', 'time_from', Yii::$app->time->dateDb],
+                    ['<', 'time_to', Yii::$app->time->rewDaysDateDb(1)]
+                ])),
+                'myPatientsTomorrow' => count(Yii::$app->expert->findMeets([
+                        'and',
+                        ['=', 'status', Meets::STATUS_PLANNED],
+                        ['>=', 'time_from', Yii::$app->time->rewDaysDateDb(1)],
+                        ['<', 'time_to', Yii::$app->time->rewDaysDateDb(2)]
+                    ]
+                ))
 
             ]
         );
