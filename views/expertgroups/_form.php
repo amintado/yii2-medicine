@@ -16,9 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'patient_required')->textInput() ?>
+    <?= $form->field($model, 'course_required')->checkbox() ?>
 
-    <?= $form->field($model, 'excerpt_required')->textInput() ?>
+    <?= $form->field($model, 'excerpt_required')->checkbox() ?>
 
     <?= $form->field($model, 'excerpt_order')->textInput() ?>
 

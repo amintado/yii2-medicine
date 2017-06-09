@@ -17,6 +17,7 @@
   },
   "minimum-stability": "dev",
   "require": {
-    "php": ">5.3.4"
+    "php": ">5.3.4",
+    "kartik-v/yii2-widgets": "*"
   }
 }

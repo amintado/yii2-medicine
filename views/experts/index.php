@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use Yii;
+
 /* @var $this yii\web\View */
 /* @var $searchModel ut8ia\medicine\models\search\ExpertsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -25,15 +27,24 @@ $this->params['breadcrumbs'][] = $this->title;
 //        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\ActionColumn',
-                'template' => '{update}<br>{delete}<br>{view}',
+                'template' => '{update} {delete} {view}',
                 'contentOptions' => [
-//                    'class' => 'small text-right',
                     'nowrap' => 'nowrap'
                 ],
             ],
             [
-//                'contentOptions' => ['class' => 'col-lg-12 text-left'],
-                'attribute' => 'Name',
+                'contentOptions' => ['class' => 'col-lg-8 '],
+                'label' => Yii::t('app', 'Expert'),
+                'attribute' => 'surname',
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->fullName();
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-8 '],
+                'label' => Yii::t('app', 'Expert'),
+                'attribute' => 'expertGroups',
                 'format' => 'html',
                 'value' => function($model) {
                     return $model->fullName();

@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description') ?>
 
-    <?= $form->field($model, 'patient_required') ?>
+    <?= $form->field($model, 'course_required') ?>
 
     <?= $form->field($model, 'excerpt_required') ?>
 

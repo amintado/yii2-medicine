@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel ut8ia\medicine\models\search\ExcertGroupsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,18 +23,42 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'name',
-            'description',
-            'patient_required',
-            'excerpt_required',
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete} {view}',
+                'contentOptions' => [
+                    'nowrap' => 'nowrap'
+                ]],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'name',
+                'label' => Yii::t('app', 'Group name'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->name;
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-7'],
+                'attribute' => 'name',
+                'label' => Yii::t('app', 'Description'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->description;
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-3'],
+                'attribute' => 'name',
+                'label' => Yii::t('app', 'Experts'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return count($model->experts);
+                },
+            ],
             // 'excerpt_order',
 
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

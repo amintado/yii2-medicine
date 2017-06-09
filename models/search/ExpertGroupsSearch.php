@@ -10,7 +10,7 @@ use ut8ia\medicine\models\ExpertGroups;
 /**
  * ExcertGroupsSearch represents the model behind the search form of `ut8ia\medicine\models\ExpertGroups`.
  */
-class ExcertGroupsSearch extends ExpertGroups
+class ExpertGroupsSearch extends ExpertGroups
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class ExcertGroupsSearch extends ExpertGroups
     public function rules()
     {
         return [
-            [['id', 'patient_required', 'excerpt_required', 'excerpt_order'], 'integer'],
+            [['id', 'course_required', 'excerpt_required', 'excerpt_order'], 'integer'],
             [['name', 'description'], 'safe'],
         ];
     }
@@ -41,7 +41,7 @@ class ExcertGroupsSearch extends ExpertGroups
      */
     public function search($params)
     {
-        $query = ExpertGroups::find();
+        $query = ExpertGroups::find()->with('experts');
 
         // add conditions that should always apply here
 
@@ -60,7 +60,7 @@ class ExcertGroupsSearch extends ExpertGroups
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'patient_required' => $this->patient_required,
+            'course_required' => $this->course_required,
             'excerpt_required' => $this->excerpt_required,
             'excerpt_order' => $this->excerpt_order,
         ]);

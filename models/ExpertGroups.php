@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property string $name
  * @property string $description
- * @property int $patient_required
+ * @property int $course_required
  * @property int $excerpt_required
  * @property int $excerpt_order
  */
@@ -31,7 +31,7 @@ class ExpertGroups extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['patient_required', 'excerpt_required', 'excerpt_order'], 'integer'],
+            [['course_required', 'excerpt_required', 'excerpt_order'], 'integer'],
             [['name', 'description'], 'string', 'max' => 255],
         ];
     }
@@ -45,7 +45,7 @@ class ExpertGroups extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
-            'patient_required' => Yii::t('app', 'Patient Required'),
+            'course_required' => Yii::t('app', 'Course Required'),
             'excerpt_required' => Yii::t('app', 'Excerpt Required'),
             'excerpt_order' => Yii::t('app', 'Excerpt Order'),
         ];
@@ -102,5 +102,11 @@ class ExpertGroups extends \yii\db\ActiveRecord
             ->via('placesExpertGroupsLink');
     }
 
+    /** @return \yii\db\ActiveQuery */
+    public function getExperts()
+    {
+        return $this->hasMany(Experts::class, ['id' => 'expert_id'])
+            ->via('expertGroupsLink');
+    }
 
 }

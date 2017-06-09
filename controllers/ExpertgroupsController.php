@@ -4,7 +4,7 @@ namespace ut8ia\medicine\controllers;
 
 use Yii;
 use ut8ia\medicine\models\ExpertGroups;
-use ut8ia\medicine\models\search\ExcertGroupsSearch;
+use ut8ia\medicine\models\search\ExpertGroupsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,7 @@ class ExpertgroupsController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ExcertGroupsSearch();
+        $searchModel = new ExpertGroupsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
