@@ -13,6 +13,7 @@ use Yii;
  * @property int $course_required
  * @property int $excerpt_required
  * @property int $excerpt_order
+ * @property string $display_color
  */
 class ExpertGroups extends \yii\db\ActiveRecord
 {
@@ -33,6 +34,7 @@ class ExpertGroups extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['course_required', 'excerpt_required', 'excerpt_order'], 'integer'],
             [['name', 'description'], 'string', 'max' => 255],
+            ['display_color', 'string', 'max' => 16],
         ];
     }
 
@@ -48,6 +50,7 @@ class ExpertGroups extends \yii\db\ActiveRecord
             'course_required' => Yii::t('app', 'Course Required'),
             'excerpt_required' => Yii::t('app', 'Excerpt Required'),
             'excerpt_order' => Yii::t('app', 'Excerpt Order'),
+            'display_color' => Yii::t('app', 'Dosplay color'),
         ];
     }
 

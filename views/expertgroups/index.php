@@ -16,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
         <?= Html::a(Yii::t('app', 'Create Expert Groups'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -49,12 +48,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-                'contentOptions' => ['class' => 'col-lg-3'],
+                'contentOptions' => ['class' => 'col-lg-2'],
                 'attribute' => 'name',
                 'label' => Yii::t('app', 'Experts'),
                 'format' => 'html',
                 'value' => function($model) {
                     return count($model->experts);
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-1'],
+                'attribute' => 'name',
+                'label' => Yii::t('app', 'Display color'),
+                'format' => 'raw',
+                'value' => function($model) {
+                    return '<div class="label" style="background-color:'.$model->display_color.';">'.$model->name.'</div>';
                 },
             ],
             // 'excerpt_order',

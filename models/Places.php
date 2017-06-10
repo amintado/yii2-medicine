@@ -9,6 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property string $name
+ * @property integer $building_id
+ * @property integer $floor
  * @property string $description
  */
 class Places extends \yii\db\ActiveRecord
@@ -27,8 +29,9 @@ class Places extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'flor', 'buliding_id'], 'required'],
             [['name'], 'string', 'max' => 255],
+            [['flor', 'building_id'], 'integer'],
             [['description'], 'string', 'max' => 512],
         ];
     }
@@ -41,8 +44,17 @@ class Places extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
+            'building_id' => Yii::t('app', 'Building'),
+            'floor' => Yii::t('app', 'Floor'),
             'description' => Yii::t('app', 'Description'),
         ];
+    }
+
+
+    /** @return \yii\db\ActiveQuery */
+    public function getBiulding()
+    {
+        return $this->hasOne(Buildings::class, ['id' => 'building_id']);
     }
 
 
@@ -77,6 +89,8 @@ class Places extends \yii\db\ActiveRecord
         return $this->hasMany(Schedule::class, ['place_id' => 'id']);
     }
 
+
+    /** linked relations  */
 
     /** @return \yii\db\ActiveQuery */
     public function getExperts()

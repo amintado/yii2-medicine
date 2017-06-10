@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\widgets\ColorInput;
 
 /* @var $this yii\web\View */
 /* @var $model ut8ia\medicine\models\ExpertGroups */
@@ -21,6 +22,11 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'excerpt_required')->checkbox() ?>
 
     <?= $form->field($model, 'excerpt_order')->textInput() ?>
+
+    <?= $form->field($model, 'display_color')->widget(ColorInput::classname(),
+        [
+            'options' => ['placeholder' => 'Select color ...']
+        ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
