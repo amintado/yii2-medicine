@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel ut8ia\medicine\models\search\PlacesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,15 +23,41 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'name',
-            'description',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete} {view}',
+                'contentOptions' => [
+                    'nowrap' => 'nowrap'
+                ],
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2 '],
+                'label' => ucfirst(Yii::t('app', 'name')),
+                'attribute' => 'name',
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->name;
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2 '],
+                'label' => ucfirst(Yii::t('app', 'building')),
+                'attribute' => 'name',
+                'format' => 'html',
+                'value' => function($model) {
+                    return Yii::$app->renderer->show($model->buildings);
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-8 '],
+                'label' => ucfirst(Yii::t('app', 'experts')),
+                'attribute' => 'experts',
+                'format' => 'html',
+                'value' => function($model) {
+                    return Yii::$app->renderer->show($model->experts);
+                },
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

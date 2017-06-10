@@ -52,7 +52,7 @@ class Places extends \yii\db\ActiveRecord
 
 
     /** @return \yii\db\ActiveQuery */
-    public function getBiulding()
+    public function getBuildings()
     {
         return $this->hasOne(Buildings::class, ['id' => 'building_id']);
     }

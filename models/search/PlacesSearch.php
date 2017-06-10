@@ -41,7 +41,7 @@ class PlacesSearch extends Places
      */
     public function search($params)
     {
-        $query = Places::find();
+        $query = Places::find()->with('buildings');
 
         // add conditions that should always apply here
 

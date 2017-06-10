@@ -10,6 +10,7 @@ class MedicineModule extends Module
 
     public $formsConfig;
     public $usersClass;
+    public $partialsPath;
 
     public function init()
     {
