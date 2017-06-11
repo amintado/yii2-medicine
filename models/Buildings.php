@@ -32,7 +32,7 @@ class Buildings extends \yii\db\ActiveRecord
         return [
             [['name', 'adress', 'floors'], 'required'],
             [['lattitude', 'longitude'], 'number'],
-            [['floors'], 'integer'],
+            [['id', 'floors'], 'integer'],
             [['name'], 'string', 'max' => 64],
             [['adress'], 'string', 'max' => 255],
         ];
@@ -74,6 +74,30 @@ class Buildings extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Experts::class, ['id' => 'expert_id'])
             ->via('expertPlacesLink');
+    }
+
+
+    /**
+     * @return array
+     */
+    public function pairs()
+    {
+        return Buildings::find()
+            ->select('name')
+            ->indexBy('id')
+            ->column();
+    }
+
+
+    public function findFloors()
+    {
+        $c = $this->floors;
+        $out = [];
+        while ($c) {
+            $out[$c] = $c;
+            $c--;
+        }
+        return $out;
     }
 
 

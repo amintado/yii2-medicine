@@ -44,18 +44,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['class' => 'col-lg-2 '],
                 'label' => ucfirst(Yii::t('app', 'building')),
                 'attribute' => 'name',
-                'format' => 'html',
+                'format' => 'object',
                 'value' => function($model) {
-                    return Yii::$app->renderer->show($model->buildings);
+                    return $model->buildings;
                 },
             ],
             [
                 'contentOptions' => ['class' => 'col-lg-8 '],
                 'label' => ucfirst(Yii::t('app', 'experts')),
                 'attribute' => 'experts',
-                'format' => 'html',
+                'format' => 'object',
                 'value' => function($model) {
-                    return Yii::$app->renderer->show($model->experts);
+                    return $model->experts;
                 },
             ],
         ],

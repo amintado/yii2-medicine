@@ -8,6 +8,8 @@ use ut8ia\medicine\models\search\BuildingsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
+use ut8ia\medicine\helpers\Converter;
 
 /**
  * BuildingsController implements the CRUD actions for Buildings model.
@@ -107,6 +109,20 @@ class BuildingsController extends Controller
     }
 
     /**
+     * @return string
+     */
+    public function actionFloors()
+    {
+        $out = '';
+        if (isset($_POST['depdrop_parents'])) {
+            $id = $_POST['depdrop_parents'];
+            $out = Converter::separatePairs((Buildings::findOne($id))->findFloors());
+        }
+        return Json::encode(['output' => $out, 'selected' => '']);
+    }
+
+
+    /**
      * Finds the Buildings model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
@@ -121,4 +137,6 @@ class BuildingsController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
 }

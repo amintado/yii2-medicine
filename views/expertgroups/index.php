@@ -60,9 +60,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['class' => 'col-lg-1'],
                 'attribute' => 'name',
                 'label' => Yii::t('app', 'Display color'),
-                'format' => 'raw',
+                'format' => 'object',
                 'value' => function($model) {
-                    return '<div class="label" style="background-color:'.$model->display_color.';">'.$model->name.'</div>';
+                    return ['object' => $model, 'view' => 'label'];
                 },
             ],
             // 'excerpt_order',

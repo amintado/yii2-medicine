@@ -2,6 +2,7 @@
 
 namespace ut8ia\medicine\controllers;
 
+use ut8ia\medicine\models\forms\PlacesForm;
 use Yii;
 use ut8ia\medicine\models\Places;
 use ut8ia\medicine\models\search\PlacesSearch;
@@ -61,9 +62,10 @@ class PlacesController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+
     public function actionCreate()
     {
-        $model = new Places();
+        $model = new PlacesForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -73,6 +75,7 @@ class PlacesController extends Controller
             ]);
         }
     }
+
 
     /**
      * Updates an existing Places model.
@@ -104,6 +107,7 @@ class PlacesController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+
     }
 
     /**
@@ -115,7 +119,7 @@ class PlacesController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Places::findOne($id)) !== null) {
+        if (($model = PlacesForm::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

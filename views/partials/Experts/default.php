@@ -1,1 +1,1 @@
-<?= ucfirst($model->surname) ?> 
+<?= ucfirst($model->surname) ?>

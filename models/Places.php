@@ -16,7 +16,7 @@ use Yii;
 class Places extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * @return string
      */
     public static function tableName()
     {
@@ -24,20 +24,20 @@ class Places extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * @return array
      */
     public function rules()
     {
         return [
-            [['name', 'flor', 'buliding_id'], 'required'],
+            [['name', 'floor', 'building_id'], 'required'],
             [['name'], 'string', 'max' => 255],
-            [['flor', 'building_id'], 'integer'],
+            [['floor', 'building_id', 'id'], 'integer'],
             [['description'], 'string', 'max' => 512],
         ];
     }
 
     /**
-     * @inheritdoc
+     * @return array
      */
     public function attributeLabels()
     {
@@ -105,6 +105,5 @@ class Places extends \yii\db\ActiveRecord
         return $this->hasMany(ExpertsGroups::class, ['id' => 'expert_group_id'])
             ->via('placesExpertGroupsLink');
     }
-
 
 }
