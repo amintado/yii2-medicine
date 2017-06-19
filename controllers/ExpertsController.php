@@ -2,8 +2,8 @@
 
 namespace ut8ia\medicine\controllers;
 
+use ut8ia\medicine\models\forms\ExpertsForm;
 use Yii;
-use ut8ia\medicine\models\Experts;
 use ut8ia\medicine\models\search\ExpertsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -63,7 +63,7 @@ class ExpertsController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Experts();
+        $model = new ExpertsForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -110,12 +110,12 @@ class ExpertsController extends Controller
      * Finds the Experts model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Experts the loaded model
+     * @return ExpertsForm the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Experts::findOne($id)) !== null) {
+        if (($model = ExpertsForm::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -88,7 +88,10 @@ class Buildings extends \yii\db\ActiveRecord
             ->column();
     }
 
-
+    /**
+     * makes array N=>N  max value is highest floor in building
+     * @return array
+     */
     public function findFloors()
     {
         $c = $this->floors;

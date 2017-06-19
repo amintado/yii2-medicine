@@ -13,6 +13,7 @@ use Yii;
  * @property string $auth_key
  * @property string $password_hash
  * @property string $password_reset_token
+ * @property string $password_change
  * @property string $email
  * @property string $status
  * @property int $created_at
@@ -28,6 +29,23 @@ use Yii;
  */
 class Experts extends ActiveRecord
 {
+
+    const STATUS_NEW = 'new';
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
+
+    /**
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return [
+            self::STATUS_NEW => Yii::t('app', 'new'),
+            self::STATUS_ACTIVE => Yii::t('app', 'active'),
+            self::STATUS_BLOCKED => Yii::t('app', 'blocked'),
+        ];
+    }
+
     /** @return string */
     public static function tableName()
     {
@@ -40,6 +58,7 @@ class Experts extends ActiveRecord
         return [
             [['username', 'password_hash', 'status', 'created_at', 'updated_at', 'surname', 'name', 'patronymic', 'short_info', 'info', 'images', 'specialization'], 'required'],
             [['status'], 'string'],
+            ['password_change', 'boolean'],
             [['created_at', 'updated_at'], 'integer'],
             [['username'], 'string', 'max' => 64],
             [['auth_key'], 'string', 'max' => 32],
@@ -140,7 +159,6 @@ class Experts extends ActiveRecord
         return $this->hasMany(Patients::class, ['id' => 'patient_id'])
             ->via('expertPatientsLink');
     }
-
 
 
     /**
