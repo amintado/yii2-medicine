@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use dosamigos\tinymce\TinyMce;
 
 /* @var $this yii\web\View */
 /* @var $model ut8ia\medicine\models\Experts */
