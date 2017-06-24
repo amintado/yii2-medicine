@@ -11,13 +11,7 @@ class Formatter extends \yii\i18n\Formatter
 
     const DEFAULT_VIEW = 'default';
 
-    public $partialsPath;
-
-    public function init()
-    {
-        $this->partialsPath = $this->partialsPath ?: '@vendor/ut8ia/yii2-medicine/views/partials/';
-        parent::init();
-    }
+    public $partialsPath =  '@vendor/ut8ia/yii2-medicine/views/partials/';
 
     /**
      * @param object|array $value

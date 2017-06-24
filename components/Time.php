@@ -8,11 +8,11 @@ use Yii;
 class Time extends Component
 {
 
-    public $timeZone;
-    public $dateFormat;
-    public $dateFormatDb;
-    public $datetimeFormat;
-    public $datetimeFormatDb;
+    public $timeZone ='UTC';
+    public $dateFormat='Y-m-d';
+    public $dateFormatDb='Y-m-d';
+    public $datetimeFormat='Y-m-d H:i:s';
+    public $datetimeFormatDb='Y-m-d H:i:s';
 
     public $timestamp;
     public $date;
@@ -22,12 +22,6 @@ class Time extends Component
 
     public function init()
     {
-        $this->timeZone = $this->timeZone ?: 'UTC';
-        $this->dateFormat = $this->dateFormat ?: 'Y-m-d';
-        $this->dateFormatDb = $this->dateFormatDb ?: 'Y-m-d';
-        $this->datetimeFormat = $this->datetimeFormat ?: 'Y-m-d H:i:s';
-        $this->datetimeFormatDb = $this->datetimeFormatDb ?: 'Y-m-d H:i:s';
-
         date_default_timezone_set($this->timeZone);
         Yii::$app->db->createCommand("SET time_zone = '{$this->timeZone}'")->execute();
 

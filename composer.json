@@ -19,6 +19,7 @@
   "require": {
     "php": ">5.3.4",
     "kartik-v/yii2-widgets": "*",
-    "2amigos/yii2-tinymce-widget": "~1.1"
+    "ut8ia/yii2-filemanager":"*",
+    "ut8ia/yii2-content-module":"*"
   }
 }
