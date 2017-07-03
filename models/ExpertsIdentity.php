@@ -16,6 +16,8 @@ class ExpertsIdentity extends Experts implements IdentityInterface
     const STATUS_ACTIVE = 'active';
     const STATUS_BLOCKED = 'blocked';
 
+    const PASSWORD_NEED_CHANGE = 1;
+
     /**
      * Finds user by username
      *
@@ -114,5 +116,6 @@ class ExpertsIdentity extends Experts implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
 
 }

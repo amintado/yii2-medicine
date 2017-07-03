@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $model ut8ia\medicine\models\Experts */
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Experts',
-]) . $model->name;
+        'modelClass' => 'Experts',
+    ]) . $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Experts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
@@ -18,6 +18,8 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'availablePlaces' => $availablePlaces,
+        'availableExpertGroups' => $availableExpertGroups
     ]) ?>
 
 </div>

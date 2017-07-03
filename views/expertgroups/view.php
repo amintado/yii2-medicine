@@ -28,12 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'excerpt_order',
             [
                 'label' => Yii::t('app', 'Experts'),
-                'format' => 'html',
-                'value' => ListView::widget([
-                    'dataProvider' => (new ArrayDataProvider([
-                        'allModels' => $model->experts
-                    ]))
-                ])
+                'format' => 'object',
+                'value' => ['object' => $model->experts, 'view' => 'Experts/label' ]
             ],
             [
                 'label' => Yii::t('app', 'Display color'),

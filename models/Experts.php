@@ -13,7 +13,7 @@ use Yii;
  * @property string $auth_key
  * @property string $password_hash
  * @property string $password_reset_token
- * @property string $password_change
+ * @property integer $password_change
  * @property string $email
  * @property string $status
  * @property int $created_at
@@ -58,7 +58,7 @@ class Experts extends ActiveRecord
         return [
             [['username', 'password_hash', 'status', 'created_at', 'updated_at', 'surname', 'name', 'patronymic', 'short_info', 'info', 'images', 'specialization'], 'required'],
             [['status'], 'string'],
-            ['password_change', 'boolean'],
+            ['password_change', 'integer'],
             [['created_at', 'updated_at'], 'integer'],
             [['username'], 'string', 'max' => 64],
             [['auth_key'], 'string', 'max' => 32],

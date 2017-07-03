@@ -2,7 +2,9 @@
 
 namespace ut8ia\medicine\controllers;
 
+use ut8ia\medicine\models\ExpertGroups;
 use ut8ia\medicine\models\forms\ExpertsForm;
+use ut8ia\medicine\models\Places;
 use Yii;
 use ut8ia\medicine\models\search\ExpertsSearch;
 use yii\web\Controller;
@@ -89,6 +91,8 @@ class ExpertsController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'availablePlaces' => Places::pairs(),
+                'availableExpertGroups' => ExpertGroups::pairs()
             ]);
         }
     }
