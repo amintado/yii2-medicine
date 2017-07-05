@@ -2,6 +2,7 @@
 
 namespace ut8ia\medicine\controllers;
 
+use ut8ia\medicine\models\forms\ScheduleExceptionDaysForm;
 use Yii;
 use ut8ia\medicine\models\ScheduleExceptionDays;
 use ut8ia\medicine\models\search\ScheduleExceptionDaysSearch;
@@ -63,7 +64,7 @@ class ScheduleexceptiondaysController extends Controller
      */
     public function actionCreate()
     {
-        $model = new ScheduleExceptionDays();
+        $model = new ScheduleExceptionDaysForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -87,6 +88,7 @@ class ScheduleexceptiondaysController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $model->formatParams();
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -115,7 +117,7 @@ class ScheduleexceptiondaysController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = ScheduleExceptionDays::findOne($id)) !== null) {
+        if (($model = ScheduleExceptionDaysForm::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

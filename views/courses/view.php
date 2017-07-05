@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model ut8ia\medicine\models\Courses */
 
-$this->title = $model->id;
+$this->title = $model->number;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Courses'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,10 +28,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'number',
-            'date_start',
-            'date_end',
+            [
+                'label' => Yii::t('app', 'Date start'),
+                'format' => 'html',
+                'value' => Yii::$app->time->date2front($model->date_start)
+            ],
+            [
+                'label' => Yii::t('app', 'Date end'),
+                'format' => 'html',
+                'value' => Yii::$app->time->date2front($model->date_end)
+            ],
             'status',
         ],
     ]) ?>

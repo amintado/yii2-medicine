@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel ut8ia\medicine\models\search\CoursesListSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,19 +23,40 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete} {view}',
+                'contentOptions' => [
+                    'nowrap' => 'nowrap'
+                ]],
 
-            'id',
-            'course_id',
-            'patient_id',
-            'status',
-            'date_from',
-            // 'date_to',
-            // 'comment',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'contentOptions' => ['class' => 'col-lg-1'],
+                'attribute' => 'number',
+                'label' => Yii::t('app', 'Course number'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->number;
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-1'],
+                'attribute' => 'patients',
+                'label' => Yii::t('app', 'Patients'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return count($model->coursesList);
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-10'],
+                'attribute' => 'patients',
+                'label' => Yii::t('app', 'Patients'),
+                'format' => 'object',
+                'value' => function($model) {
+                    return count($model->coursesList);
+                },
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel ut8ia\medicine\models\search\ScheduleExceptionDaysSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,15 +23,30 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'date',
-            'comment',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete} {view}',
+                'contentOptions' => [
+                    'nowrap' => 'nowrap'
+                ]],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'date',
+                'label' => Yii::t('app', 'Date'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return Yii::$app->time->date2front($model->date);
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-10'],
+                'attribute' => 'comment',
+                'label' => Yii::t('app', 'Comment'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->comment;
+                },
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

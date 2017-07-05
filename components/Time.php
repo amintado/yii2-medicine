@@ -8,11 +8,12 @@ use Yii;
 class Time extends Component
 {
 
-    public $timeZone ='UTC';
-    public $dateFormat='Y-m-d';
-    public $dateFormatDb='Y-m-d';
-    public $datetimeFormat='Y-m-d H:i:s';
-    public $datetimeFormatDb='Y-m-d H:i:s';
+    public $timeZone = 'UTC';
+    public $dateFormat = 'Y-m-d';
+    public $dateJsFormat = 'dd-M-yyyy';
+    public $dateFormatDb = 'Y-m-d';
+    public $datetimeFormat = 'Y-m-d H:i:s';
+    public $datetimeFormatDb = 'Y-m-d H:i:s';
 
     public $timestamp;
     public $date;
@@ -72,6 +73,25 @@ class Time extends Component
         $timestamp = $timestamp ?: $this->timestamp;
         return date($this->datetimeFormat, $timestamp);
     }
+
+    /**
+     * @param string $date
+     * @return string
+     */
+    public function date2db($date)
+    {
+        return $this->makeDateDb(strtotime($date));
+    }
+
+    /**
+     * @param string $date
+     * @return string
+     */
+    public function date2front($date)
+    {
+        return $this->makeDate(strtotime($date));
+    }
+
 
     /**
      * @param integer $days

@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model ut8ia\medicine\models\ScheduleExceptionDays */
 
-$this->title = $model->id;
+$this->title =  Yii::$app->time->date2front($model->date);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Schedule Exception Days'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,8 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'date',
+            [
+                'label' => Yii::t('app', 'Date'),
+                'format' => 'html',
+                'value' => Yii::$app->time->date2front($model->date)
+            ],
             'comment',
         ],
     ]) ?>

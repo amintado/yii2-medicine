@@ -2,9 +2,10 @@
 
 namespace ut8ia\medicine\controllers;
 
+use ut8ia\medicine\models\forms\CoursesListForm;
 use Yii;
 use ut8ia\medicine\models\CoursesList;
-use ut8ia\medicine\models\search\CoursesListSearch;
+use ut8ia\medicine\models\search\CoursesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +36,7 @@ class CourseslistController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CoursesListSearch();
+        $searchModel = new CoursesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -63,7 +64,7 @@ class CourseslistController extends Controller
      */
     public function actionCreate()
     {
-        $model = new CoursesList();
+        $model = new CoursesListForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -115,7 +116,7 @@ class CourseslistController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = CoursesList::findOne($id)) !== null) {
+        if (($model = CoursesListForm::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

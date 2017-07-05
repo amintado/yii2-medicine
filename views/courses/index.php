@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel ut8ia\medicine\models\search\CoursesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -14,7 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Courses'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -22,17 +22,68 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete} {view}',
+                'contentOptions' => [
+                    'nowrap' => 'nowrap'
+                ]],
 
-            'id',
-            'number',
-            'date_start',
-            'date_end',
-            'status',
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'number',
+                'label' => Yii::t('app', 'Course number'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->number;
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'date_start',
+                'label' => Yii::t('app', 'Date start'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return Yii::$app->time->date2front($model->date_start);
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'date_end',
+                'label' => Yii::t('app', 'Date end'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return Yii::$app->time->date2front($model->date_end);
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'status',
+                'label' => Yii::t('app', 'Status'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->status;
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'patients',
+                'label' => Yii::t('app', 'Patients'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return count($model->patients);
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'excerpts',
+                'label' => Yii::t('app', 'Excerpts'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return count($model->excerpts);
+                },
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

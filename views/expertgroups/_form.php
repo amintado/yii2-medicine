@@ -23,7 +23,7 @@ use kartik\widgets\ColorInput;
 
     <?= $form->field($model, 'excerpt_order')->textInput() ?>
 
-    <?= $form->field($model, 'display_color')->widget(ColorInput::classname(),
+    <?= $form->field($model, 'display_color')->widget(ColorInput::class,
         [
             'options' => ['placeholder' => 'Select color ...']
         ]) ?>

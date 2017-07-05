@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel ut8ia\medicine\models\search\DiagnosesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,16 +23,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'code',
-            'name',
-            'text',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete} {view}',
+                'contentOptions' => [
+                    'nowrap' => 'nowrap'
+                ]],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'code',
+                'label' => Yii::t('app', 'Diagnose code'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->code;
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-10'],
+                'attribute' => 'name',
+                'label' => Yii::t('app', 'Diagnose name'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->name;
+                },
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

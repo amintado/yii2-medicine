@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel ut8ia\medicine\models\search\MeetTypesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,14 +23,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete} {view}',
+                'contentOptions' => [
+                    'nowrap' => 'nowrap'
+                ]],
+            [
+                'contentOptions' => ['class' => 'col-lg-10'],
+                'attribute' => 'name',
+                'label' => Yii::t('app', 'Meets type'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->name;
+                },
+            ],
 
-            'id',
-            'name',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'name',
+                'label' => Yii::t('app', 'Meets'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return count($model->meets);
+                },
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

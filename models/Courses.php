@@ -16,7 +16,9 @@ use Yii;
 class Courses extends \yii\db\ActiveRecord
 {
 
+    const STATUS_PLANNED = 'planned';
     const STATUS_OPEN = 'open';
+    const STATUS_PENDING = 'pending';
     const STATUS_CLOSED = 'closed';
 
     /**
@@ -25,7 +27,10 @@ class Courses extends \yii\db\ActiveRecord
     public static function getStatuses()
     {
         return [
+
+            self::STATUS_PLANNED => Yii::t('app', 'planned'),
             self::STATUS_OPEN => Yii::t('app', 'open'),
+            self::STATUS_PENDING => Yii::t('app', 'pending'),
             self::STATUS_CLOSED => Yii::t('app', 'closed')
         ];
     }
@@ -81,7 +86,7 @@ class Courses extends \yii\db\ActiveRecord
     /** @return \yii\db\ActiveQuery */
     public function getExcerpts()
     {
-        return $this->hasMany(Exceprts::class, ['course_id' => 'id']);
+        return $this->hasMany(Excerpts::class, ['course_id' => 'id']);
     }
 
     /** linked relations */

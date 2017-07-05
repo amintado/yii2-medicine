@@ -3,7 +3,7 @@
 namespace ut8ia\medicine\controllers;
 
 use Yii;
-use ut8ia\medicine\models\Courses;
+use ut8ia\medicine\models\forms\CoursesForm;
 use ut8ia\medicine\models\search\CoursesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -63,7 +63,7 @@ class CoursesController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Courses();
+        $model = new CoursesForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -115,7 +115,7 @@ class CoursesController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Courses::findOne($id)) !== null) {
+        if (($model = CoursesForm::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
