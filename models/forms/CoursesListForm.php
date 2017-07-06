@@ -1,28 +1,31 @@
 <?php
 namespace ut8ia\medicine\models\forms;
 
-use ut8ia\medicine\models\Courses;
+use ut8ia\medicine\models\CoursesList;
 use Yii;
 
 /**
  * Class CoursesListForm
  * @package ut8ia\medicine\models\forms
  */
-class CoursesListForm extends Courses
+class CoursesListForm extends CoursesList
 {
-
 
     public function formatParams()
     {
-        $this->date_start = Yii::$app->time->date2front($this->date_start);
-        $this->date_end = Yii::$app->time->date2front($this->date_end);
+        $this->date_from = Yii::$app->time->date2front($this->date_from);
+        $this->date_to = Yii::$app->time->date2front($this->date_to);
     }
 
+    /**
+     * @param bool $insert
+     * @return bool
+     */
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            $this->date_start = Yii::$app->time->date2db($this->date_start);
-            $this->date_end = Yii::$app->time->date2db($this->date_end);
+            $this->date_from = Yii::$app->time->date2db($this->date_from);
+            $this->date_to = Yii::$app->time->date2db($this->date_to);
             return true;
         }
         return false;

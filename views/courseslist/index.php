@@ -36,25 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => Yii::t('app', 'Course number'),
                 'format' => 'html',
                 'value' => function($model) {
-                    return $model->number;
-                },
-            ],
-            [
-                'contentOptions' => ['class' => 'col-lg-1'],
-                'attribute' => 'patients',
-                'label' => Yii::t('app', 'Patients'),
-                'format' => 'html',
-                'value' => function($model) {
-                    return count($model->coursesList);
-                },
-            ],
-            [
-                'contentOptions' => ['class' => 'col-lg-10'],
-                'attribute' => 'patients',
-                'label' => Yii::t('app', 'Patients'),
-                'format' => 'object',
-                'value' => function($model) {
-                    return count($model->coursesList);
+                    return $model->courses->number;
                 },
             ],
         ],

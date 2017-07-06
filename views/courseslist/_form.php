@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\widgets\DatePicker;
+use yii\jui\AutoComplete;
 
 /* @var $this yii\web\View */
 /* @var $model ut8ia\medicine\models\CoursesList */
@@ -12,17 +14,27 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(Yii::$app->controller->module->formsConfig); ?>
 
-    <?= $form->field($model, 'course_id')->textInput() ?>
+    <?= $form->field($model, 'course_id')->hiddenInput() ?>
 
     <?= $form->field($model, 'patient_id')->textInput() ?>
 
-    <?= $form->field($model, 'status')->dropDownList([ 'list' => 'List', 'reserve' => 'Reserve', 'reject' => 'Reject', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'status')->dropDownList($model->getStatuses()) ?>
 
-    <?= $form->field($model, 'date_from')->textInput() ?>
+    <?= $form->field($model, 'date_from')->Widget(DatePicker::class, [
+        'type' => DatePicker::TYPE_INPUT,
+        'pluginOptions' => [
+            'format' => Yii::$app->time->dateJsFormat
+        ]
+    ]) ?>
 
-    <?= $form->field($model, 'date_to')->textInput() ?>
+    <?= $form->field($model, 'date_to')->Widget(DatePicker::class, [
+        'type' => DatePicker::TYPE_INPUT,
+        'pluginOptions' => [
+            'format' => Yii::$app->time->dateJsFormat
+        ]
+    ]) ?>
 
-    <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'comment')->textarea(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

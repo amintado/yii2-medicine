@@ -18,6 +18,7 @@
   "minimum-stability": "dev",
   "require": {
     "php": ">5.3.4",
+    "yiisoft/yii2-jui": "*",
     "kartik-v/yii2-widgets": "*",
     "ut8ia/yii2-filemanager":"*",
     "ut8ia/yii2-content-module":"*"

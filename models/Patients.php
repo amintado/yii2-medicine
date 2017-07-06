@@ -150,5 +150,13 @@ class Patients extends \yii\db\ActiveRecord
             ->via('meets');
     }
 
+    /**
+     * @return string
+     */
+    public function shortName()
+    {
+        return $this->surname . " " . $this->name;
+    }
+
 
 }

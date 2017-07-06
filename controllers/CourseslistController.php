@@ -5,7 +5,7 @@ namespace ut8ia\medicine\controllers;
 use ut8ia\medicine\models\forms\CoursesListForm;
 use Yii;
 use ut8ia\medicine\models\CoursesList;
-use ut8ia\medicine\models\search\CoursesSearch;
+use ut8ia\medicine\models\search\CoursesListSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -36,7 +36,7 @@ class CourseslistController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CoursesSearch();
+        $searchModel = new CoursesListSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
