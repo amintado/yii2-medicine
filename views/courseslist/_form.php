@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\widgets\DatePicker;
 use yii\jui\AutoComplete;
+use yii\web\JsExpression;
 
 /* @var $this yii\web\View */
 /* @var $model ut8ia\medicine\models\CoursesList */
@@ -14,9 +15,23 @@ use yii\jui\AutoComplete;
 
     <?php $form = ActiveForm::begin(Yii::$app->controller->module->formsConfig); ?>
 
-    <?= $form->field($model, 'course_id')->hiddenInput() ?>
+    <?= $form->field($model, 'course_id')->hiddenInput()->label(false); ?>
 
-    <?= $form->field($model, 'patient_id')->textInput() ?>
+    <?= $form->field($model, 'patient_id')->hiddenInput()->label(false) ?>
+
+    <?= $form->field($model, 'patient_name')->widget(AutoComplete::class, [
+        'clientOptions' => [
+            'source' => new JsExpression('function (request,response){ window.clientSearch.requestAutocomplete(request, response); }'),
+            'delay' => 700,
+            'select' => new JsExpression('function (a,b){ window.clientSearch.selectItemSafe(a, b); }'),
+        ],
+        'options' => [
+            'readonly' => false,
+            'value' => $model->patient_name,
+            'class' => 'form-control',
+            'placeholder' => Yii::t('app', 'Search or add contact client'),
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'status')->dropDownList($model->getStatuses()) ?>
 

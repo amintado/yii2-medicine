@@ -87,6 +87,7 @@ class CoursesController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $model->formatParams();
             return $this->render('update', [
                 'model' => $model,
             ]);

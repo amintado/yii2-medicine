@@ -30,6 +30,18 @@ class PatientsController extends Controller
     }
 
     /**
+     * @return array
+     */
+    public function actions()
+    {
+        return [
+            'jsonrpc' => [
+                'class' => '\nizsheanez\jsonRpc\Action',
+            ],
+        ];
+    }
+
+    /**
      * Lists all Patients models.
      * @return mixed
      */

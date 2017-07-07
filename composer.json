@@ -19,6 +19,7 @@
   "require": {
     "php": ">5.3.4",
     "yiisoft/yii2-jui": "*",
+    "nizsheanez/yii2-json-rpc": "dev-master",
     "kartik-v/yii2-widgets": "*",
     "ut8ia/yii2-filemanager":"*",
     "ut8ia/yii2-content-module":"*"
