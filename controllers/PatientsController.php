@@ -8,6 +8,7 @@ use ut8ia\medicine\models\search\PatientsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use nizsheanez\jsonRpc\Action;
 
 /**
  * PatientsController implements the CRUD actions for Patients model.
@@ -36,7 +37,7 @@ class PatientsController extends Controller
     {
         return [
             'jsonrpc' => [
-                'class' => '\nizsheanez\jsonRpc\Action',
+                'class' => Action::class
             ],
         ];
     }
@@ -133,4 +134,11 @@ class PatientsController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function patientsAutocomplete($request)
+    {
+        return $request . "23423";
+    }
+
+
 }
