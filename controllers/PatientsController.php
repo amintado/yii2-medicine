@@ -135,10 +135,4 @@ class PatientsController extends Controller
         }
     }
 
-    public function patientsAutocomplete($request)
-    {
-        return $request . "23423";
-    }
-
-
 }

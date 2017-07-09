@@ -160,22 +160,4 @@ class Experts extends ActiveRecord
             ->via('expertPatientsLink');
     }
 
-
-    /**
-     * @return string
-     */
-    public function shortName()
-    {
-        return ucfirst($this->name) . " " . ucfirst($this->surname);
-    }
-
-    /**
-     * @return string
-     */
-    public function fullName()
-    {
-        return ucfirst($this->surname) . " " . ucfirst($this->name) . " " . ucfirst($this->patronymic);
-    }
-
-
 }

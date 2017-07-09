@@ -36,18 +36,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['class' => 'col-lg-8 '],
                 'label' => Yii::t('app', 'Expert'),
                 'attribute' => 'surname',
-                'format' => 'html',
+                'format' => 'object',
                 'value' => function($model) {
-                    return $model->fullName();
+                    return ['object' => $model, 'view' => 'fullName'];
                 },
             ],
             [
                 'contentOptions' => ['class' => 'col-lg-8 '],
                 'label' => Yii::t('app', 'Expert'),
                 'attribute' => 'expertGroups',
-                'format' => 'html',
+                'format' => 'object',
                 'value' => function($model) {
-                    return $model->fullName();
+                    return ['object' => $model->expertGroups, 'view' => 'ExpertGroups/label'];
                 },
             ],
 //            'id',
