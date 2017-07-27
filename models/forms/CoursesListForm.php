@@ -13,9 +13,9 @@ class CoursesListForm extends CoursesList
 
     public $patient_name;
 
+
     public function formatParams()
     {
-        $this->patient_name = "123e4";
         $this->date_from = Yii::$app->time->date2front($this->date_from);
         $this->date_to = Yii::$app->time->date2front($this->date_to);
     }

@@ -99,4 +99,25 @@ class Courses extends \yii\db\ActiveRecord
     }
 
 
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function findOpen()
+    {
+        return self::find()
+            ->where(['status' => self::STATUS_OPEN])
+            ->all();
+    }
+    /**
+     * @return array
+     */
+    public function pairs($where = null)
+    {
+        return Courses::find()
+            ->select('number')
+            ->indexBy('id')
+            ->filterWhere($where)
+            ->column();
+    }
+
 }

@@ -18,8 +18,7 @@ use kartik\widgets\DepDrop;
 
     <?= $form->field($model, 'building_id')->dropDownList($model->findBuildings()) ?>
 
-    <?=
-    $form->field($model, 'floor')->widget(DepDrop::class, [
+    <?= $form->field($model, 'floor')->widget(DepDrop::class, [
         'options' => ['id' => 'placesform-floor'],
         'data' => $model->findFloors(),
         'pluginOptions' => [
@@ -29,10 +28,6 @@ use kartik\widgets\DepDrop;
         ]
     ]);
 
-    ?>
-    <?php
-
-    //        echo $form->field($model, 'floor')->textarea();
     ?>
 
     <?= $form->field($model, 'description')->textarea(); ?>

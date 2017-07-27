@@ -3,7 +3,6 @@
 namespace ut8ia\medicine\controllers;
 
 use ut8ia\medicine\services\autocomplete\Autocomplete;
-use Yii;
 use yii\web\Controller;
 use nizsheanez\jsonRpc\Action;
 

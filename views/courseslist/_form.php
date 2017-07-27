@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\widgets\DatePicker;
 use ut8ia\medicine\widgets\patientSearch\PatientSearchWidget;
-
+use ut8ia\medicine\widgets\courseSelector\CourseSelectorWidget;
 
 /* @var $this yii\web\View */
 /* @var $model ut8ia\medicine\models\CoursesList */
@@ -15,7 +15,11 @@ use ut8ia\medicine\widgets\patientSearch\PatientSearchWidget;
 
     <?php $form = ActiveForm::begin(Yii::$app->controller->module->formsConfig); ?>
 
-    <?= $form->field($model, 'course_id')->hiddenInput()->label(false); ?>
+    <?= CourseSelectorWidget::widget([
+        'model' => $model,
+        'form' => $form
+    ])
+    ?>
 
     <?= PatientSearchWidget::widget([
         'model' => $model,

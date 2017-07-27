@@ -3,6 +3,7 @@
 namespace ut8ia\medicine\services\autocomplete;
 
 use ut8ia\medicine\models\Patients;
+use Yii;
 
 class Autocomplete
 {

@@ -2,7 +2,6 @@
 
 namespace ut8ia\medicine\components;
 
-use yii\base\Component;
 use yii\web\View;
 
 class Formatter extends \yii\i18n\Formatter

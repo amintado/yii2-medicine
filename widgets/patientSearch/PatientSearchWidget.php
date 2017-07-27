@@ -1,10 +1,13 @@
 <?php
 
-namespace ut8ia\medicine\widgets\PatientSearch;
+namespace ut8ia\medicine\widgets\patientSearch;
 
 use yii\base\Widget;
 
-
+/**
+ * Class PatientSearchWidget
+ * @package ut8ia\medicine\widgets\patientSearch
+ */
 class PatientSearchWidget extends Widget
 {
 
