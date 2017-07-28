@@ -41,10 +41,9 @@ class CoursesListSearch extends CoursesList
      */
     public function search($params)
     {
-        $query = CoursesList::find();
+        $query = CoursesList::find()->with('courses', 'patients');
 
         // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

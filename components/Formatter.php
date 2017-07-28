@@ -10,7 +10,41 @@ class Formatter extends \yii\i18n\Formatter
 
     const DEFAULT_VIEW = 'default';
 
-    public $partialsPath =  '@vendor/ut8ia/yii2-medicine/views/partials/';
+    public $partialsPath = '@vendor/ut8ia/yii2-medicine/views/partials/';
+
+
+    /**
+     * @param string $className
+     * @param null $where
+     * @param null $keyName
+     * @param null $options
+     * @return array|null
+     */
+    public function asPairs($className, $where = null, $keyName = null, $options = null)
+    {
+        $records = $className::find()->filterWhere($where)->all();
+
+        if (!$records) {
+            return null;
+        }
+        $ans = [];
+        foreach ($records as $record) {
+            $ans += $this->asPair(['object' => $record]+$options, $keyName);
+        }
+        return $ans;
+    }
+
+    /**
+     * @param mixed $value
+     * @param null $keyName
+     * @return array
+     */
+    public function asPair($value, $keyName = null)
+    {
+        $keyName = $keyName ?: 'id';
+        $key = (isset($value['object'])) ? $value['object']->$keyName : $value->$keyName;
+        return [$key => $this->asObject($value)];
+    }
 
     /**
      * @param object|array $value

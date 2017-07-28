@@ -12,10 +12,8 @@ $this->title = Yii::t('app', 'Courses');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="courses-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
-
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
     <p>
         <?= Html::a(Yii::t('app', 'Create Courses'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -30,9 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]],
 
             [
-                'contentOptions' => ['class' => 'col-lg-2'],
+                'contentOptions' => ['class' => 'col-lg-1'],
                 'attribute' => 'number',
-                'label' => Yii::t('app', 'Course number'),
+                'label' => Yii::t('app', 'Course'),
                 'format' => 'html',
                 'value' => function($model) {
                     return $model->number;

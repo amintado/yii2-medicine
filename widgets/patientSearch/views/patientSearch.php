@@ -7,7 +7,8 @@ PatientSearchAsset::register($this);
 
 ?>
 
-<?= $form->field($model, 'patient_id')->hiddenInput(['class' => 'patient_id_value'])->label(false) ?>
+<?= $form->field($model, 'patient_id', ['template' => '{input}', 'options' => ['style' => 'visibility:hidden;']])
+    ->hiddenInput(['class' => 'patient_id_value'])->label(false) ?>
 
 <?= $form->field($model, 'patient_name')->widget(AutoComplete::class, [
     'clientOptions' => [

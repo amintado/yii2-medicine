@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use kartik\widgets\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model ut8ia\medicine\models\search\CoursesSearch */
 /* @var $form yii\widgets\ActiveForm */
@@ -18,15 +18,23 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
     <?= $form->field($model, 'number') ?>
 
-    <?= $form->field($model, 'date_start') ?>
+    <?= $form->field($model, 'date_start')->Widget(DatePicker::class, [
+        'type' => DatePicker::TYPE_INPUT,
+        'pluginOptions' => [
+            'format' => Yii::$app->time->dateJsFormat
+        ]
+    ]) ?>
 
-    <?= $form->field($model, 'date_end') ?>
+    <?= $form->field($model, 'date_end')->Widget(DatePicker::class, [
+        'type' => DatePicker::TYPE_INPUT,
+        'pluginOptions' => [
+            'format' => Yii::$app->time->dateJsFormat
+        ]
+    ]) ?>
 
-    <?= $form->field($model, 'status') ?>
+    <?= $form->field($model, 'status')->dropDownList($model->getStatuses()) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

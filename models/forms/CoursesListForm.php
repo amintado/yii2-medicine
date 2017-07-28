@@ -1,4 +1,5 @@
 <?php
+
 namespace ut8ia\medicine\models\forms;
 
 use ut8ia\medicine\models\CoursesList;
@@ -18,6 +19,11 @@ class CoursesListForm extends CoursesList
     {
         $this->date_from = Yii::$app->time->date2front($this->date_from);
         $this->date_to = Yii::$app->time->date2front($this->date_to);
+        $this->patient_name = Yii::$app->formatter
+            ->asObject([
+                'object' => $this->patients,
+                'view' => 'search_result'
+            ]);
     }
 
     /**

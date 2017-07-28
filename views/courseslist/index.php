@@ -31,14 +31,59 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]],
 
             [
-                'contentOptions' => ['class' => 'col-lg-1'],
-                'attribute' => 'number',
-                'label' => Yii::t('app', 'Course number'),
-                'format' => 'html',
+                'attribute' => 'course_id',
+                'label' => Yii::t('app', 'Course'),
+                'format' => 'object',
                 'value' => function($model) {
-                    return $model->courses->number;
+                    return $model->courses;
                 },
             ],
+            [
+                'contentOptions' => ['class' => 'col-lg-3'],
+                'attribute' => 'patient',
+                'label' => Yii::t('app', 'Patient'),
+                'format' => 'object',
+                'value' => function($model) {
+                    return $model->patients;
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'date_from',
+                'label' => Yii::t('app', 'Date from'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return Yii::$app->time->date2front($model->date_from);
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'date_to',
+                'label' => Yii::t('app', 'Date to'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return Yii::$app->time->date2front($model->date_to);
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'status',
+                'label' => Yii::t('app', 'Status'),
+                'format' => 'object',
+                'value' => function($model) {
+                    return ['object' => $model, 'view' => 'status_label'];
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'comment',
+                'label' => Yii::t('app', 'Comment'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->comment;
+                },
+            ],
+
         ],
     ]); ?>
     <?php Pjax::end(); ?>

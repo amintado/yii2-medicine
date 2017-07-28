@@ -52,7 +52,7 @@ class CoursesList extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['course_id', 'patient_id', 'status', 'date_from', 'date_to', 'comment'], 'required'],
+            [['course_id', 'patient_id', 'status', 'date_from', 'date_to'], 'required'],
             [['course_id', 'patient_id'], 'integer'],
             [['status'], 'string'],
             [['date_from', 'date_to'], 'safe'],

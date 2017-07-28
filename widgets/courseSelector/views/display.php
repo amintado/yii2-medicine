@@ -1,1 +1,0 @@
-<?= $form->field($model, 'course_id')->dropDownList($model->getStatuses()); ?>
