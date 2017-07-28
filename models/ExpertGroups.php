@@ -112,16 +112,4 @@ class ExpertGroups extends \yii\db\ActiveRecord
             ->via('expertGroupsLink');
     }
 
-
-    /**
-     * @return array
-     */
-    public function pairs()
-    {
-        return ExpertGroups::find()
-            ->select('name')
-            ->indexBy('id')
-            ->column();
-    }
-
 }

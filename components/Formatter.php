@@ -22,14 +22,21 @@ class Formatter extends \yii\i18n\Formatter
      */
     public function asPairs($className, $where = null, $keyName = null, $options = null)
     {
-        $records = $className::find()->filterWhere($where)->all();
+        $query = $className::find();
+        if ($where) {
+            $query->filterWhere($where);
+        }
+        $records = $query->all();
 
         if (!$records) {
             return null;
         }
+
         $ans = [];
         foreach ($records as $record) {
-            $ans += $this->asPair(['object' => $record]+$options, $keyName);
+            $value = ($options) ? ['object' => $record] + $options : ['object' => $record];
+
+            $ans += $this->asPair($value, $keyName);
         }
         return $ans;
     }

@@ -2,25 +2,9 @@
 
 namespace ut8ia\medicine\helpers;
 
-use Yii;
-
 class Converter
 {
 
-
-    public static function makePairs($objArray)
-    {
-        $out = [];
-        if (empty($objArray)) {
-            return $out;
-        }
-        foreach ($objArray as $obj) {
-            
-        }
-
-        return $out;
-
-    }
 
     /**
      * @param array $pairs

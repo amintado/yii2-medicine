@@ -89,5 +89,13 @@ class CoursesList extends \yii\db\ActiveRecord
         return $this->hasOne(Patients::class, ['id' => 'patient_id']);
     }
 
+    /**
+     * @return bool
+     */
+    public function canUpdate()
+    {
+        return in_array($this->courses->status, [Courses::STATUS_OPEN, Courses::STATUS_PENDING]);
+    }
+
 
 }

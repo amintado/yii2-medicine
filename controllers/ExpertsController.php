@@ -91,8 +91,8 @@ class ExpertsController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'availablePlaces' => Places::pairs(),
-                'availableExpertGroups' => ExpertGroups::pairs()
+                'availablePlaces' => Yii::$app->formatter->asPairs(Places::class),
+                'availableExpertGroups' => Yii::$app->formatter->asPairs(ExpertGroups::class)
             ]);
         }
     }

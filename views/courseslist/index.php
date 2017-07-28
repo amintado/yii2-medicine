@@ -28,8 +28,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{update} {delete} {view}',
                 'contentOptions' => [
                     'nowrap' => 'nowrap'
-                ]],
-
+                ],
+                'buttons' => [
+                    'update' => function($url, $model) {
+                        if ($model->canUpdate()) {
+                            return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                                'title' => Yii::t('app', 'Edit'),
+                                'data-pjax' => 1,
+                                'class' => 'grid-edit-action'
+                            ]);
+                        }
+                    }
+                ]
+            ],
             [
                 'attribute' => 'course_id',
                 'label' => Yii::t('app', 'Course'),

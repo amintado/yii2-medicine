@@ -77,16 +77,6 @@ class Buildings extends \yii\db\ActiveRecord
     }
 
 
-    /**
-     * @return array
-     */
-    public function pairs()
-    {
-        return Buildings::find()
-            ->select('name')
-            ->indexBy('id')
-            ->column();
-    }
 
     /**
      * makes array N=>N  max value is highest floor in building

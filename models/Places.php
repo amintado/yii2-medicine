@@ -106,17 +106,4 @@ class Places extends \yii\db\ActiveRecord
             ->via('placesExpertGroupsLink');
     }
 
-
-    /**
-     * @return array
-     */
-    public function pairs()
-    {
-        return Places::find()
-            ->select('name')
-            ->indexBy('id')
-            ->column();
-    }
-
-
 }
