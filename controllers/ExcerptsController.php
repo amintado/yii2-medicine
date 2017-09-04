@@ -95,9 +95,9 @@ class ExcerptsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+
+        $model->formatParams();
+        return $this->render('update', ['model' => $model]);
 
     }
 

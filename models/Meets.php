@@ -117,4 +117,11 @@ class Meets extends \yii\db\ActiveRecord
         return $this->hasOne(Excerpts::class, ['course_id' => 'course_id']);
     }
 
+    /**
+     * @return bool
+     */
+    public function canUpdate(){
+        return true;
+    }
+
 }

@@ -83,6 +83,17 @@ class Time extends Component
         return $this->makeDateDb(strtotime($date));
     }
 
+
+    /**
+     * @param string $datetime
+     * @return string
+     */
+    public function datetime2db($datetime)
+    {
+        return $this->makeDatetimeDb(strtotime($datetime));
+    }
+
+
     /**
      * @param string $date
      * @return string
@@ -90,6 +101,16 @@ class Time extends Component
     public function date2front($date)
     {
         return $this->makeDate(strtotime($date));
+    }
+
+
+    /**
+     * @param string $datetime
+     * @return string
+     */
+    public function datetime2front($datetime)
+    {
+        return $this->makeDatetime(strtotime($datetime));
     }
 
 

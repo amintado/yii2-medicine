@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel ut8ia\medicine\models\search\MeetsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,25 +23,78 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'expert_id',
-            'expert_group_id',
-            'patient_id',
-            'place_id',
-            // 'course_id',
-            // 'status',
-            // 'meet_type_id',
-            // 'for_excerpt',
-            // 'text',
-            // 'comment',
-            // 'time_from',
-            // 'time_to',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete} {view}',
+                'contentOptions' => [
+                    'nowrap' => 'nowrap'
+                ],
+                'buttons' => [
+                    'update' => function($url, $model) {
+                        if ($model->canUpdate()) {
+                            return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                                'title' => Yii::t('app', 'Edit'),
+                                'data-pjax' => 1,
+                                'class' => 'grid-edit-action'
+                            ]);
+                        }
+                    }
+                ]
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'expert_id',
+                'label' => Yii::t('app', 'Expert'),
+                'format' => 'object',
+                'value' => function($model) {
+                    return $model->experts;
+                },
+            ],
+            ['contentOptions' => ['class' => 'col-lg-1'],
+                'attribute' => 'expert_id',
+                'label' => Yii::t('app', 'Expert'),
+                'format' => 'object',
+                'value' => function($model) {
+                    return ['object' => $model->expertGroups, 'view' => 'label'];
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-3'],
+                'attribute' => 'patient_id',
+                'label' => Yii::t('app', 'Patient'),
+                'format' => 'object',
+                'value' => function($model) {
+                    return $model->patients;
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'place_id',
+                'label' => Yii::t('app', 'Place'),
+                'format' => 'object',
+                'value' => function($model) {
+                    return $model->places;
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-2'],
+                'attribute' => 'status',
+                'label' => Yii::t('app', 'From'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return Yii::$app->time->datetime2front($model->time_from);
+                },
+            ],
+            [
+                'contentOptions' => ['class' => 'col-lg-1'],
+                'attribute' => 'status',
+                'label' => Yii::t('app', 'Status'),
+                'format' => 'html',
+                'value' => function($model) {
+                    return $model->status;
+                },
+            ]
         ],
     ]); ?>
     <?php Pjax::end(); ?>
