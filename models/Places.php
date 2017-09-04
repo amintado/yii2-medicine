@@ -102,7 +102,7 @@ class Places extends \yii\db\ActiveRecord
     /** @return \yii\db\ActiveQuery */
     public function getExpertsGroups()
     {
-        return $this->hasMany(ExpertsGroups::class, ['id' => 'expert_group_id'])
+        return $this->hasMany(ExpertGroups::class, ['id' => 'expert_group_id'])
             ->via('placesExpertGroupsLink');
     }
 

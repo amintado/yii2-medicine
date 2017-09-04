@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="expert-groups-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
 
     <?= DetailView::widget([
         'model' => $model,

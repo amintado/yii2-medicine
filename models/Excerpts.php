@@ -30,7 +30,8 @@ class Excerpts extends \yii\db\ActiveRecord
     {
         return [
             [['course_id', 'patient_id', 'text', 'date'], 'required'],
-            [['course_id', 'patient_id', 'date'], 'integer'],
+            [['course_id', 'patient_id'], 'integer'],
+            ['date', 'safe'],
             [['text'], 'string', 'max' => 1024],
         ];
     }
@@ -81,6 +82,15 @@ class Excerpts extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ExpertGroups::class, ['id' => 'expert_group_id'])
             ->via('meets');
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function canUpdate()
+    {
+        return true;
     }
 
 

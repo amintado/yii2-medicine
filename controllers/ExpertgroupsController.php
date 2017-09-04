@@ -5,6 +5,8 @@ namespace ut8ia\medicine\controllers;
 use Yii;
 use ut8ia\medicine\models\ExpertGroups;
 use ut8ia\medicine\models\search\ExpertGroupsSearch;
+use yii\base\InvalidParamException;
+use yii\db\StaleObjectException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -32,6 +34,7 @@ class ExpertgroupsController extends Controller
     /**
      * Lists all ExpertGroups models.
      * @return mixed
+     * @throws InvalidParamException
      */
     public function actionIndex()
     {
@@ -48,6 +51,8 @@ class ExpertgroupsController extends Controller
      * Displays a single ExpertGroups model.
      * @param integer $id
      * @return mixed
+     * @throws InvalidParamException
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -60,6 +65,7 @@ class ExpertgroupsController extends Controller
      * Creates a new ExpertGroups model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @throws InvalidParamException
      */
     public function actionCreate()
     {
@@ -67,11 +73,11 @@ class ExpertgroupsController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
         }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+
     }
 
     /**
@@ -79,6 +85,8 @@ class ExpertgroupsController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
+     * @throws InvalidParamException
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
@@ -86,11 +94,10 @@ class ExpertgroupsController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
         }
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -98,6 +105,9 @@ class ExpertgroupsController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
+     * @throws NotFoundHttpException
+     * @throws StaleObjectException
+     * @throws \Exception
      */
     public function actionDelete($id)
     {
@@ -117,8 +127,8 @@ class ExpertgroupsController extends Controller
     {
         if (($model = ExpertGroups::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
+        throw new NotFoundHttpException('The requested page does not exist.');
+
     }
 }

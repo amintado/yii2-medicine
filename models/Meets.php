@@ -102,7 +102,7 @@ class Meets extends \yii\db\ActiveRecord
     /** @return \yii\db\ActiveQuery */
     public function getExpertGroups()
     {
-        return $this->hasOne(ExpertsGroups::class, ['id' => 'expert_group_id']);
+        return $this->hasOne(ExpertGroups::class, ['id' => 'expert_group_id']);
     }
 
     /** @return \yii\db\ActiveQuery */

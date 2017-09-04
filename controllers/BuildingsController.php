@@ -5,6 +5,8 @@ namespace ut8ia\medicine\controllers;
 use Yii;
 use ut8ia\medicine\models\Buildings;
 use ut8ia\medicine\models\search\BuildingsSearch;
+use yii\base\InvalidParamException;
+use yii\db\StaleObjectException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -34,6 +36,7 @@ class BuildingsController extends Controller
     /**
      * Lists all Buildings models.
      * @return mixed
+     * @throws InvalidParamException
      */
     public function actionIndex()
     {
@@ -50,6 +53,8 @@ class BuildingsController extends Controller
      * Displays a single Buildings model.
      * @param integer $id
      * @return mixed
+     * @throws InvalidParamException
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -62,6 +67,7 @@ class BuildingsController extends Controller
      * Creates a new Buildings model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @throws InvalidParamException
      */
     public function actionCreate()
     {
@@ -69,11 +75,11 @@ class BuildingsController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
         }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+
     }
 
     /**
@@ -81,6 +87,8 @@ class BuildingsController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
+     * @throws InvalidParamException
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
@@ -88,11 +96,11 @@ class BuildingsController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
         }
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+
     }
 
     /**
@@ -100,6 +108,9 @@ class BuildingsController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
+     * @throws StaleObjectException
+     * @throws NotFoundHttpException
+     * @throws \Exception
      */
     public function actionDelete($id)
     {
@@ -110,13 +121,16 @@ class BuildingsController extends Controller
 
     /**
      * @return string
+     * @throws InvalidParamException
      */
     public function actionFloors()
     {
         $out = '';
         if (isset($_POST['depdrop_parents'])) {
-            $id = $_POST['depdrop_parents'];
-            $out = Converter::separatePairs((Buildings::findOne($id))->findFloors());
+            $out = Converter::separatePairs(
+                (Buildings::findOne($_POST['depdrop_parents']))
+                ->findFloors()
+            );
         }
         return Json::encode(['output' => $out, 'selected' => '']);
     }
@@ -133,9 +147,9 @@ class BuildingsController extends Controller
     {
         if (($model = Buildings::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
+        throw new NotFoundHttpException('The requested page does not exist.');
+
     }
 
 

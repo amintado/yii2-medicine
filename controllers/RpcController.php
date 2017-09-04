@@ -24,6 +24,10 @@ class RpcController extends Controller
         ];
     }
 
+    /**
+     * @param $request
+     * @return array
+     */
     public function patientsAutocomplete($request)
     {
         return ['response_list' => Autocomplete::patientAutocomplete($request)];

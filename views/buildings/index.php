@@ -12,11 +12,8 @@ $this->title = Yii::t('app', 'Buildings');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="buildings-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
         <?= Html::a(Yii::t('app', 'Create Buildings'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>

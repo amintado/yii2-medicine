@@ -7,6 +7,8 @@ use ut8ia\medicine\models\forms\ExpertsForm;
 use ut8ia\medicine\models\Places;
 use Yii;
 use ut8ia\medicine\models\search\ExpertsSearch;
+use yii\base\InvalidParamException;
+use yii\db\StaleObjectException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -34,6 +36,7 @@ class ExpertsController extends Controller
     /**
      * Lists all Experts models.
      * @return mixed
+     * @throws InvalidParamException
      */
     public function actionIndex()
     {
@@ -50,6 +53,8 @@ class ExpertsController extends Controller
      * Displays a single Experts model.
      * @param integer $id
      * @return mixed
+     * @throws InvalidParamException
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -62,6 +67,7 @@ class ExpertsController extends Controller
      * Creates a new Experts model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @throws InvalidParamException
      */
     public function actionCreate()
     {
@@ -69,11 +75,11 @@ class ExpertsController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
         }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+
     }
 
     /**
@@ -81,6 +87,8 @@ class ExpertsController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
+     * @throws InvalidParamException
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
@@ -88,13 +96,13 @@ class ExpertsController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-                'availablePlaces' => Yii::$app->formatter->asPairs(Places::class),
-                'availableExpertGroups' => Yii::$app->formatter->asPairs(ExpertGroups::class)
-            ]);
         }
+        return $this->render('update', [
+            'model' => $model,
+            'availablePlaces' => Yii::$app->formatter->asPairs(Places::class),
+            'availableExpertGroups' => Yii::$app->formatter->asPairs(ExpertGroups::class)
+        ]);
+
     }
 
     /**
@@ -102,6 +110,9 @@ class ExpertsController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
+     * @throws StaleObjectException
+     * @throws NotFoundHttpException
+     * @throws \Exception
      */
     public function actionDelete($id)
     {
@@ -121,8 +132,8 @@ class ExpertsController extends Controller
     {
         if (($model = ExpertsForm::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
+        throw new NotFoundHttpException('The requested page does not exist.');
+
     }
 }

@@ -7,7 +7,7 @@ use ut8ia\medicine\widgets\patientSearch\PatientSearchWidget;
 use ut8ia\medicine\models\Courses;
 
 /* @var $this yii\web\View */
-/* @var $model ut8ia\medicine\models\CoursesList */
+/* @var $model ut8ia\medicine\models\forms\CoursesListForm */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -30,16 +30,16 @@ use ut8ia\medicine\models\Courses;
     ])
     ?>
 
-    <?= $form->field($model, 'status')->dropDownList($model->getStatuses()) ?>
+    <?= $form->field($model, 'status')->dropDownList($model::getStatuses()) ?>
 
-    <?= $form->field($model, 'date_from')->Widget(DatePicker::class, [
+    <?= $form->field($model, 'date_from')->widget(DatePicker::class, [
         'type' => DatePicker::TYPE_INPUT,
         'pluginOptions' => [
             'format' => Yii::$app->time->dateJsFormat
         ]
     ]) ?>
 
-    <?= $form->field($model, 'date_to')->Widget(DatePicker::class, [
+    <?= $form->field($model, 'date_to')->widget(DatePicker::class, [
         'type' => DatePicker::TYPE_INPUT,
         'pluginOptions' => [
             'format' => Yii::$app->time->dateJsFormat

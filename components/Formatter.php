@@ -4,6 +4,10 @@ namespace ut8ia\medicine\components;
 
 use yii\web\View;
 
+/**
+ * Class Formatter
+ * @package ut8ia\medicine\components
+ */
 class Formatter extends \yii\i18n\Formatter
 {
 
@@ -104,7 +108,7 @@ class Formatter extends \yii\i18n\Formatter
     }
 
     /**
-     * @param object $object
+     * @param Object $object
      * @param string $view
      * @return string
      */

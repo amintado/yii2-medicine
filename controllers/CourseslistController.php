@@ -4,8 +4,9 @@ namespace ut8ia\medicine\controllers;
 
 use ut8ia\medicine\models\forms\CoursesListForm;
 use Yii;
-use ut8ia\medicine\models\CoursesList;
 use ut8ia\medicine\models\search\CoursesListSearch;
+use yii\base\InvalidParamException;
+use yii\db\StaleObjectException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -33,6 +34,8 @@ class CourseslistController extends Controller
     /**
      * Lists all CoursesList models.
      * @return mixed
+     * @throws NotFoundHttpException
+     * @throws InvalidParamException
      */
     public function actionIndex()
     {
@@ -49,6 +52,8 @@ class CourseslistController extends Controller
      * Displays a single CoursesList model.
      * @param integer $id
      * @return mixed
+     * @throws InvalidParamException
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -61,6 +66,7 @@ class CourseslistController extends Controller
      * Creates a new CoursesList model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @throws InvalidParamException
      */
     public function actionCreate()
     {
@@ -68,7 +74,7 @@ class CourseslistController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        };
+        }
 
         return $this->render('create', ['model' => $model]);
 
@@ -79,6 +85,8 @@ class CourseslistController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
+     * @throws InvalidParamException
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
@@ -98,6 +106,9 @@ class CourseslistController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
+     * @throws NotFoundHttpException
+     * @throws StaleObjectException
+     * @throws \Exception
      */
     public function actionDelete($id)
     {
@@ -110,15 +121,15 @@ class CourseslistController extends Controller
      * Finds the CoursesList model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return CoursesList the loaded model
+     * @return CoursesListForm the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
         if (($model = CoursesListForm::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
+        throw new NotFoundHttpException('The requested page does not exist.');
+
     }
 }

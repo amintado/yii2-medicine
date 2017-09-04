@@ -3,8 +3,10 @@
 namespace ut8ia\medicine\controllers;
 
 use Yii;
-use ut8ia\medicine\models\Excerpts;
+use ut8ia\medicine\models\forms\ExcerptsForm;
 use ut8ia\medicine\models\search\ExcerptsSearch;
+use yii\base\InvalidParamException;
+use yii\db\StaleObjectException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -32,6 +34,7 @@ class ExcerptsController extends Controller
     /**
      * Lists all Excerpts models.
      * @return mixed
+     * @throws InvalidParamException
      */
     public function actionIndex()
     {
@@ -48,6 +51,8 @@ class ExcerptsController extends Controller
      * Displays a single Excerpts model.
      * @param integer $id
      * @return mixed
+     * @throws InvalidParamException
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -60,18 +65,19 @@ class ExcerptsController extends Controller
      * Creates a new Excerpts model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @throws InvalidParamException
      */
     public function actionCreate()
     {
-        $model = new Excerpts();
+        $model = new ExcerptsForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
         }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+
     }
 
     /**
@@ -79,6 +85,8 @@ class ExcerptsController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
+     * @throws InvalidParamException
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
@@ -86,11 +94,11 @@ class ExcerptsController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
         }
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+
     }
 
     /**
@@ -98,6 +106,9 @@ class ExcerptsController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
+     * @throws NotFoundHttpException
+     * @throws StaleObjectException
+     * @throws \Exception
      */
     public function actionDelete($id)
     {
@@ -110,15 +121,15 @@ class ExcerptsController extends Controller
      * Finds the Excerpts model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Excerpts the loaded model
+     * @return ExcerptsForm the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Excerpts::findOne($id)) !== null) {
+        if (($model = ExcerptsForm::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
+        throw new NotFoundHttpException('The requested page does not exist.');
+
     }
 }

@@ -2,23 +2,24 @@
 
 namespace ut8ia\medicine\models\forms;
 
-use ut8ia\medicine\models\CoursesList;
+use ut8ia\medicine\models\Excerpts;
 use Yii;
 
 /**
- * Class CoursesListForm
+ * Class ExcerptsForm
  * @package ut8ia\medicine\models\forms
  * @property string $patient_name
  */
-class CoursesListForm extends CoursesList
+class ExcerptsForm extends Excerpts
 {
 
     public $patient_name;
 
+
     public function formatParams()
     {
-        $this->date_from = Yii::$app->time->date2front($this->date_from);
-        $this->date_to = Yii::$app->time->date2front($this->date_to);
+        $this->date = Yii::$app->time->date2front($this->date);
+
         $this->patient_name = Yii::$app->formatter
             ->asObject([
                 'object' => $this->patients,
@@ -33,8 +34,7 @@ class CoursesListForm extends CoursesList
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            $this->date_from = Yii::$app->time->date2db($this->date_from);
-            $this->date_to = Yii::$app->time->date2db($this->date_to);
+            $this->date = Yii::$app->time->date2db($this->date);
             return true;
         }
         return false;

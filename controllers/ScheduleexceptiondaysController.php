@@ -4,8 +4,9 @@ namespace ut8ia\medicine\controllers;
 
 use ut8ia\medicine\models\forms\ScheduleExceptionDaysForm;
 use Yii;
-use ut8ia\medicine\models\ScheduleExceptionDays;
 use ut8ia\medicine\models\search\ScheduleExceptionDaysSearch;
+use yii\base\InvalidParamException;
+use yii\db\StaleObjectException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -33,6 +34,7 @@ class ScheduleexceptiondaysController extends Controller
     /**
      * Lists all ScheduleExceptionDays models.
      * @return mixed
+     * @throws InvalidParamException
      */
     public function actionIndex()
     {
@@ -49,6 +51,8 @@ class ScheduleexceptiondaysController extends Controller
      * Displays a single ScheduleExceptionDays model.
      * @param integer $id
      * @return mixed
+     * @throws InvalidParamException
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -61,6 +65,7 @@ class ScheduleexceptiondaysController extends Controller
      * Creates a new ScheduleExceptionDays model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @throws InvalidParamException
      */
     public function actionCreate()
     {
@@ -68,11 +73,11 @@ class ScheduleexceptiondaysController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
         }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+
     }
 
     /**
@@ -80,6 +85,8 @@ class ScheduleexceptiondaysController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
+     * @throws InvalidParamException
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
@@ -87,12 +94,12 @@ class ScheduleexceptiondaysController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            $model->formatParams();
-            return $this->render('update', [
-                'model' => $model,
-            ]);
         }
+        $model->formatParams();
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+
     }
 
     /**
@@ -100,6 +107,9 @@ class ScheduleexceptiondaysController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
+     * @throws StaleObjectException
+     * @throws NotFoundHttpException
+     * @throws \Exception
      */
     public function actionDelete($id)
     {
@@ -112,15 +122,15 @@ class ScheduleexceptiondaysController extends Controller
      * Finds the ScheduleExceptionDays model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ScheduleExceptionDays the loaded model
+     * @return ScheduleExceptionDaysForm the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
         if (($model = ScheduleExceptionDaysForm::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
+        throw new NotFoundHttpException('The requested page does not exist.');
+
     }
 }
