@@ -150,5 +150,11 @@ class Patients extends \yii\db\ActiveRecord
             ->via('meets');
     }
 
+    /**
+     * @return bool
+     */
+    public function canUpdate(){
+        return true;
+    }
 
 }
